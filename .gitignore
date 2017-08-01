@@ -1,0 +1,11 @@
+/target/
+/.settings/
+/.idea/
+
+.classpath
+.project
+.DS_Store
+.springBeans
+
+bower_components/
+node_modules/

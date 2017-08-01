@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.waynechu.topblog.dao.LoginUserDao">
+	<select id="getByLoginTypeAndUsername" resultType="LoginUserEntity">
+		select * 
+		from t_user_login
+		where login_type=#{loginType}
+		and username=#{username}
+	</select>
+
+	<select id="getByLoginId" resultType="LoginUserEntity">
+		select * from t_user_login
+		where id=#{id}
+	</select>
+
+	<select id="getPermissionsForLoginUserId" resultType="String">
+		select c.name
+		from t_user_permissions a,t_user_login b,t_permission c
+		where a.login_user_id=b.id
+		and a.permission_id=c.id
+		and b.id=#{id}
+	</select>
+
+</mapper>
