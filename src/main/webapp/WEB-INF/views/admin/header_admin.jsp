@@ -23,10 +23,10 @@
                                 </li>
                                 <li class="user-footer">
                                     <div class="pull-left">
-                                        <a href="${ctx}/admin/profile" class="btn btn-default btn-flat">设置</a>
+                                        <a href="${ctx}/setup/normal" class="btn btn-default btn-flat">设置</a>
                                     </div>
                                     <div class="pull-right">
-                                        <a href="${ctx}/admin/logout" class="btn btn-default btn-flat">退出</a>
+                                        <a href="${ctx}/logout" class="btn btn-default btn-flat">退出</a>
                                     </div>
                                 </li>
                             </ul>
@@ -34,7 +34,7 @@
                     </c:when>
                     <c:when test="${!ch.isAdminLogin()}">
                         <li>
-                            <a href="${ctx}/admin/login">登录</a>
+                            <a href="${ctx}/login">错误</a>
                         </li>
                     </c:when>
                 </c:choose>

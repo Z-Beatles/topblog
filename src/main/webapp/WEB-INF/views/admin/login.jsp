@@ -12,7 +12,7 @@
 		</div>
 		<div class="login-box-body">
 			<p class="login-box-msg">-- 管理员登录 --</p>
-			<form action="/admin/login" method="post" id="loginform">
+			<form action="/login" method="post" id="loginform">
 				<input type="hidden" name="loginType" value="admin">
 				<c:if test="${errormsg != null}">
 					<div class="alert alert-danger">${errormsg}</div>

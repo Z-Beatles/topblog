@@ -11,12 +11,8 @@ public class FilterChainDefinitionMapBuilder {
 
         map.put("/static/**", "anon");
         map.put("/logout", "logout");
-        map.put("/admin/logout", "logout");
-        map.put("/admin/login", "anon");
-
-        // 过滤admin路径下所有请求
-        // map.put("/admin/**", "roles[admin]");//设置角色
-        map.put("/admin/**", "perms[admin]");// 设置权限
+        map.put("/login", "anon");
+        map.put("/**", "perms[admin]");// 设置权限
         return map;
     }
 }
