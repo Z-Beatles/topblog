@@ -25,7 +25,7 @@
             <section class="content">
                 <div class="box">
                     <div class="box-header with-border">
-                        <a class="btn btn-primary" href="${ctx}/article/category/add">写文章</a>
+                        <a class="btn btn-primary" href="${ctx}/article/new">写文章</a>
                     </div>
                     <div class="box-body">
                         <table id="table" class="table table-bordered table-hover table-striped">
@@ -37,7 +37,6 @@
                                     <th>分类目录</th>
                                     <th>标签</th>
                                     <th>发布日期</th>
-                                    <th>文章内容</th>
                                 </tr>
                             </thead>
                         </table>
@@ -53,8 +52,6 @@
             var dt=$('#table').DataTable({
                 serverSide:true,
                 processing:true,
-                searching: false,
-                ordering:  false,
                 ajax:{url:'${ctx}/article/list/table.json',type:'POST'},
                 dom:"<'row'<'col-sm-6'l><'col-sm-6'f>><'row'<'col-sm-12'tr>><'row'<'col-sm-6'i><'col-sm-6'p>>",
                 pagingType:'full_numbers',
@@ -79,8 +76,7 @@
                     {data:"articleAuthor"},
                     {data:"articleCategory"},
                     {data:"articleTag"},
-                    {data:"articleTime"},
-                    {data:"articleContent"}
+                    {data:"articleTime"}
                 ]
             });
         });
