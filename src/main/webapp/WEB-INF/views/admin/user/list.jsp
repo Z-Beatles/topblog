@@ -12,8 +12,36 @@
             <jsp:param value="user_list" name="pageMenu"/>
         </jsp:include>
         <div class="content-wrapper" style="min-height: 1126px;">
+            <section class="content-header">
+                <h1>
+                                                   用户<small>列表</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="${ctx}/"><i class="fa fa-dashboard"></i>首页</a></li>
+                    <li>用户</li>
+                    <li class="active"><a href="${ctx}/user/list">所有用户</a></li>
+                </ol>
+            </section>
             <section class="content">
-                <h1 style="text-align: center; padding: 300px 0;">用户列表界面</h1>
+                <div class="box">
+                    <div class="box-header with-border">
+                        <a class="btn btn-primary" href="${ctx}/user/new">添加用户</a>
+                    </div>
+                    <div class="box-body">
+                        <table id="table" class="table table-bordered table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>标题</th>
+                                    <th>作者</th>
+                                    <th>分类目录</th>
+                                    <th>标签</th>
+                                    <th>发布日期</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
             </section>
         </div>
         <%@ include file="/WEB-INF/views/admin/footer_admin.jsp"%>
