@@ -1,6 +1,7 @@
 package cn.waynechu.topblog.util;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 
@@ -62,6 +63,16 @@ public class WebUtil {
                 session.setAttribute(key, result);
             }
         }
+        return result;
+    }
+    
+    public static Map<String, ?> dataTable(List<?> data, Integer draw, Object recordsTotal, Object recordsFiltered) {
+        Map<String, Object> result = new LinkedHashMap<>();
+        result.put("success", true);
+        result.put("data", data);
+        result.put("draw", draw);
+        result.put("recordsTotal", recordsTotal);
+        result.put("recordsFiltered", recordsFiltered);
         return result;
     }
 

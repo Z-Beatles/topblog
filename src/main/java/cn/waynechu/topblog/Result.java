@@ -43,4 +43,10 @@ public class Result<T> {
 	public Object attr(String key) {
 		return attrs.get(key);
 	}
+
+    @Override
+    public String toString() {
+        return "Result [target=" + target + ", error=" + error + ", attrs=" + attrs + "]";
+    }
+	
 }

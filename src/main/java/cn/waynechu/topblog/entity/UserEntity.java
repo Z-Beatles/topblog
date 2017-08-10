@@ -1,7 +1,7 @@
 package cn.waynechu.topblog.entity;
 
 public class UserEntity {
-    /** 用户id **/
+    /** id **/
     private Long id;
     /** 用户名 **/
     private String username;
