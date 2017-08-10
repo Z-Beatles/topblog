@@ -36,8 +36,8 @@
                                     <th>作者</th>
                                     <th>分类目录</th>
                                     <th>标签</th>
-                                    <th>评论</th>
                                     <th>发布日期</th>
+                                    <th>文章内容</th>
                                 </tr>
                             </thead>
                         </table>
@@ -74,13 +74,13 @@
                     },
                 },
                 columns:[
-                    {data:"category_id"},
-                    {data:"category_name"},
-                    {data:"category_count"},
-                    {data:"category_id"},
-                    {data:"category_name"},
-                    {data:"category_count"},
-                    {data:"category_count"}
+                    {data:"articleId"},
+                    {data:"articleTitle"},
+                    {data:"articleAuthor"},
+                    {data:"articleCategory"},
+                    {data:"articleTag"},
+                    {data:"articleTime"},
+                    {data:"articleContent"}
                 ]
             });
         });
