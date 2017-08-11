@@ -4,7 +4,7 @@
 <head>
     <%@ include file="/WEB-INF/views/admin/snippet_header_admin.jsp"%>
 </head>
-<body class="bdbody skin-purple">
+<body class="skin-purple sidebar-mini">
     <div class="wrapper">
         <jsp:include page="/WEB-INF/views/admin/header_admin.jsp"></jsp:include>
         <jsp:include page="/WEB-INF/views/admin/aside_admin.jsp">

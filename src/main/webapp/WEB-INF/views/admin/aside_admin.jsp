@@ -1,16 +1,25 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <aside class="main-sidebar">
-	<section class="sidebar" style="height: auto;">
+	<section class="sidebar">
+	    <!-- 用户信息 -->
 		<div class="user-panel">
 			<div class="pull-left image">
-				<img src="${ch.adminAvatar(req)}" class="img-circle">
+				<img src="${ch.adminAvatar(req)}" class="img-circle" alt="头像">
 			</div>
 			<div class="pull-left info">
                 <p>${ch.adminNickname(req)}</p>
-                <span>${ch.adminRolename(req)}</span>
+                <span><i class="fa fa-circle text-success"></i><small> ${ch.adminRolename(req)}</small></span>
             </div>
 		</div>
-		<ul class="sidebar-menu">
+		<!-- 查找控件 -->
+        <form action="#" method="get" class="sidebar-form">
+            <div class="input-group">
+                <input type="text" name="q" class="form-control" placeholder="全局查找...">
+                <span class="input-group-btn"><button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button></span>
+            </div>
+        </form>
+        <!-- 功能菜单 -->
+		<ul class="sidebar-menu" data-widget="tree">
 			<li class="header"><b>功能菜单</b></li>
 			<li class="treeview ${param.pageCatalog=='article'?'active':''}">
 				<a href="#">

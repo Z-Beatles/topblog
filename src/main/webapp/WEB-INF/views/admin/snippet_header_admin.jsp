@@ -15,7 +15,7 @@
 <meta http-equiv="expires" content="0" />
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <link rel="shortcut icon" type="image/x-icon" href="${ctx}/static/favicon.ico" />
-
+<!-- CSS -->
 <link rel="stylesheet" href="${ctx}/static/plugin/adminlte-2.3.7/css/AdminLTE.min.css">
 <link rel="stylesheet" href="${ctx}/static/plugin/adminlte-2.3.7/css/skins/skin-purple.min.css">
 <link rel="stylesheet" href="${ctx}/static/plugin/bootstrap-3.3.7/css/bootstrap.min.css">
@@ -24,11 +24,11 @@
 <link rel="stylesheet" href="${ctx}/static/plugin/ionicons-2.0.1/css/ionicons.min.css">
 <link rel="stylesheet" href="${ctx}/static/plugin/icheck-1.0.1/skins/square/blue.css">
 <link rel="stylesheet" href="${ctx}/static/plugin/datatables-1.10.15/css/jquery.dataTables.min.css">
-
+<!-- JS -->
 <script type="text/javascript" src="${ctx}/static/plugin/jquery-2.2.3/jquery.js"></script>
 <script type="text/javascript" src="${ctx}/static/plugin/bootstrap-3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${ctx}/static/plugin/bootstrapvalidator-0.5.3/js/bootstrapValidator.js"></script>
-<script type="text/javascript" src="${ctx}/static/plugin/adminlte-2.3.7/js/app.min.js"></script>
 <script type="text/javascript" src="${ctx}/static/plugin/icheck-1.0.1/icheck.min.js"></script>
 <script type="text/javascript" src="${ctx}/static/plugin/datatables-1.10.15/js/jquery.dataTables.js"></script>
+<script type="text/javascript" src="${ctx}/static/plugin/adminlte-2.3.7/js/adminlte.min.js"></script>
 <!-- 公共头文件 END -->
