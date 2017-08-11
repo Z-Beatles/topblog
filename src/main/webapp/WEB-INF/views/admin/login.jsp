@@ -3,7 +3,9 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-<%@ include file="/WEB-INF/views/admin/snippet_header_admin.jsp"%>
+	<%@ include file="/WEB-INF/views/admin/common_head_admin.jsp"%>
+	<link rel="stylesheet" href="${ctx}/static/plugin/bootstrapvalidator-0.5.3/css/bootstrapValidator.min.css">
+	<link rel="stylesheet" href="${ctx}/static/plugin/icheck-1.0.1/skins/square/blue.css">
 </head>
 <body class="hold-transition login-page">
 	<div class="login-box">
@@ -53,33 +55,34 @@
 		</div>
 	</div>
 
-	<script>
-		$(document).ready(function() {
-			$('.icheck').iCheck({
-				checkboxClass : 'icheckbox_square-blue',
-				radioClass : 'iradio_square-blue',
-				increaseArea : '50%' // optional
-			});
-			$("#loginform").bootstrapValidator({
-				fields : {
-					username : {
-						validators : {
-							notEmpty : {
-								message : '账号不能为空!'
-							},
-						},
-					},
-					password : {
-						validators : {
-							notEmpty : {
-								message : '密码不能为空!'
-							},
-						},
-					},
-				}
-			});
-		});
-	</script>
+	<script type="text/javascript" src="${ctx}/static/plugin/bootstrapvalidator-0.5.3/js/bootstrapValidator.js"></script>
+    <script type="text/javascript" src="${ctx}/static/plugin/icheck-1.0.1/icheck.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.icheck').iCheck({
+                checkboxClass : 'icheckbox_square-blue',
+                radioClass : 'iradio_square-blue',
+                increaseArea : '50%' // optional
+            });
+            $("#loginform").bootstrapValidator({
+                fields : {
+                    username : {
+                        validators : {
+                            notEmpty : {
+                                message : '账号不能为空!'
+                            },
+                        },
+                    },
+                    password : {
+                        validators : {
+                            notEmpty : {
+                                message : '密码不能为空!'
+                            },
+                        },
+                    },
+                }
+            });
+        });
+    </script>
 </body>
-
 </html>

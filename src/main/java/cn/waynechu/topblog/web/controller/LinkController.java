@@ -7,11 +7,11 @@ import cn.waynechu.topblog.base.BaseController;
 import cn.waynechu.topblog.dto.PageParam;
 
 @Controller
-@RequestMapping(value="/link")
-public class LinkController extends BaseController{
-    
+@RequestMapping(value = "/link")
+public class LinkController extends BaseController {
+
     @RequestMapping(method = RequestMethod.GET)
     public String link(PageParam pageParam) {
-        return "admin/link/link";
+        return "admin/link/list";
     }
 }

@@ -9,7 +9,7 @@
     <nav class="navbar navbar-static-top">
         <!-- 侧边栏切换按钮 -->
         <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-	        <span class="sr-only">Toggle navigation</span>
+	        <span class="sr-only">切换侧边栏</span>
         </a>
         <!-- 顶部自定义菜单 -->
         <div class="navbar-custom-menu">

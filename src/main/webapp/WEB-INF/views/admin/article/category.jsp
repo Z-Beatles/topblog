@@ -2,9 +2,10 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-<%@ include file="/WEB-INF/views/admin/snippet_header_admin.jsp"%>
+    <%@ include file="/WEB-INF/views/admin/common_head_admin.jsp"%>
+    <link rel="stylesheet" href="${ctx}/static/plugin/datatables-1.10.15/css/jquery.dataTables.min.css">
 </head>
-<body class="skin-purple sidebar-mini">
+<body class="hold-transition skin-purple sidebar-mini">
 	<div class="wrapper">
 		<jsp:include page="/WEB-INF/views/admin/header_admin.jsp"></jsp:include>
 		<jsp:include page="/WEB-INF/views/admin/aside_admin.jsp">
@@ -44,6 +45,8 @@
 		<%@ include file="/WEB-INF/views/admin/footer_admin.jsp"%>
 		<div class="control-sidebar-bg" style="position: fixed; height: auto;"></div>
 	</div>
+	
+	<script type="text/javascript" src="${ctx}/static/plugin/datatables-1.10.15/js/jquery.dataTables.js"></script>
 	<script type="text/javascript">
         $(document).ready(function(){
         	var dt=$('#table').DataTable({

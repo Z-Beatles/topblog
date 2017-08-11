@@ -2,14 +2,14 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-    <%@ include file="/WEB-INF/views/admin/snippet_header_admin.jsp"%>
+    <%@ include file="/WEB-INF/views/admin/common_head_admin.jsp"%>
 </head>
-<body class="skin-purple sidebar-mini">
+<body class="hold-transition skin-purple sidebar-mini">
     <div class="wrapper">
         <jsp:include page="/WEB-INF/views/admin/header_admin.jsp"></jsp:include>
         <jsp:include page="/WEB-INF/views/admin/aside_admin.jsp">
             <jsp:param value="link" name="pageCatalog"/>
-            <jsp:param value="null" name="pageMenu"/>
+            <jsp:param value="link_list" name="pageMenu"/>
         </jsp:include>
         <div class="content-wrapper" style="min-height: 1126px;">
             <section class="content">

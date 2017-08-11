@@ -7,11 +7,11 @@ import cn.waynechu.topblog.base.BaseController;
 import cn.waynechu.topblog.dto.PageParam;
 
 @Controller
-@RequestMapping(value="/comment")
-public class CommentController extends BaseController{
-    
+@RequestMapping(value = "/comment")
+public class CommentController extends BaseController {
+
     @RequestMapping(method = RequestMethod.GET)
     public String comment(PageParam pageParam) {
-        return "admin/comment/comment";
+        return "admin/comment/list";
     }
 }

@@ -21,6 +21,7 @@
         <!-- 功能菜单 -->
 		<ul class="sidebar-menu" data-widget="tree">
 			<li class="header"><b>功能菜单</b></li>
+			<!-- 文章 -->
 			<li class="treeview ${param.pageCatalog=='article'?'active':''}">
 				<a href="#">
 					<i class="fa fa-graduation-cap"></i><span> 文章</span>
@@ -33,6 +34,7 @@
 					<li class="${param.pageMenu=='article_tags'?'active':''}"><a href="${ctx}/article/tags"><i class="fa fa-tags"></i> 标签</a></li>
 				</ul>
 			</li>
+			<!-- 页面 -->
 			<li class="treeview ${param.pageCatalog=='page'?'active':''}">
                 <a href="#">
                     <i class="fa fa-sticky-note-o"></i><span>页面</span>
@@ -43,6 +45,7 @@
                     <li class="${param.pageMenu=='page_new'?'active':''}"><a href="${ctx}/page/new"><i class="fa fa-file-text-o"></i>新建页面</a></li>
                 </ul>
             </li>
+            <!-- 多媒体 -->
 			<li class="treeview ${param.pageCatalog=='media'?'active':''}">
 				<a href="#">
 					<i class="fa fa-picture-o"></i><span>多媒体</span>
@@ -53,17 +56,23 @@
 					<li class="${param.pageMenu=='media_upload'?'active':''}"><a href="${ctx}/media/upload"><i class="fa fa-upload"></i>添加</a></li>
 				</ul>
 			</li>
-			<li class="treeview ${param.pageCatalog=='link'?'active':''}">
+			<!-- 链接 -->
+			<li class="${param.pageCatalog=='link'?'active':''}">
                 <a href="${ctx}/link">
                     <i class="fa fa-link"></i><span>链接</span>
                 </a>
             </li>
-            
-            <li class="treeview ${param.pageCatalog=='comment'?'active':''}">
+            <!-- 评论 -->
+            <li class="${param.pageCatalog=='comment'?'active':''}">
                 <a href="${ctx}/comment">
                     <i class="fa fa-comments"></i><span>评论</span>
+                    <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+	                <span class="pull-right-container">
+		                <small class="label pull-right bg-blue">3</small>
+	               </span>
                 </a>
             </li>
+            <!-- 用户 -->
             <li class="treeview ${param.pageCatalog=='user'?'active':''}">
                 <a href="#">
                     <i class="fa fa-user"></i><span>用户</span>
@@ -75,6 +84,7 @@
                     <li class="${param.pageMenu=='user_info'?'active':''}"><a href="${ctx}/user/info"><i class="fa fa-black-tie"></i>我的资料</a></li>
                 </ul>
             </li>
+            <!-- 工具 -->
             <li class="treeview ${param.pageCatalog=='tools'?'active':''}">
                 <a href="#">
                     <i class="fa fa-wrench"></i><span >工具</span>
@@ -85,6 +95,7 @@
                     <li class="${param.pageMenu=='tools_export'?'active':''}"><a href="${ctx}/tools/export"><i class="fa fa-level-up"></i>数据导出</a></li>
                 </ul>
             </li>
+            <!-- 设置 -->
             <li class="treeview ${param.pageCatalog=='setup'?'active':''}">
                 <a href="#">
                     <i class="fa fa-cogs"></i><span>设置</span>
