@@ -6,16 +6,16 @@ import java.util.Map;
 public class Result<T> {
 	private T target;
 	private AppException error;
-	private Map<String, Object> attrs = new HashMap<String,Object>();
+	private Map<String, Object> attrs = new HashMap<>();
 
 	public static <T> Result<T> target(T t) {
-		Result<T> result = new Result<T>();
+		Result<T> result = new Result<>();
 		result.target = t;
 		return result;
 	}
 
 	public static <T> Result<T> error(String errorMessage) {
-		Result<T> result = new Result<T>();
+		Result<T> result = new Result<>();
 		result.error = new AppException(Constaint.ERRORCODE_OTHER, errorMessage);
 		return result;
 	}
