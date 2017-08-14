@@ -12,12 +12,12 @@ import cn.waynechu.topblog.base.BaseController;
 @Controller
 @RequestMapping(value = "/upload")
 public class UploadController extends BaseController {
-
-    @RequestMapping(value = "/image", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
+    @RequestMapping(value = "/image", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
     @ResponseBody
-    public String hello(HttpServletRequest request, HttpServletResponse response, @RequestParam(value = "editormd-image-file", required = true) MultipartFile attach) {
+    public String hello(HttpServletRequest request, HttpServletResponse response,
+            @RequestParam(value = "editormd-image-file", required = true) MultipartFile attach) {
         try {
-            String rootPath = request.getSession().getServletContext().getRealPath("/resources/upload/");
+            String rootPath = request.getSession().getServletContext().getRealPath("/WEB-INF/resources/upload/");
             File filePath = new File(rootPath);
             if (!filePath.exists()) {
                 filePath.mkdirs();
