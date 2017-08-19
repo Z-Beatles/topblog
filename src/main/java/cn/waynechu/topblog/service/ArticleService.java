@@ -42,9 +42,13 @@ public class ArticleService {
         Date articleTime = new Date();
         articleEnitiy.setArticleTime(articleTime);
         boolean flag = articleDao.saveArticle(articleEnitiy);
-        if(flag) {
+        if (flag) {
             return articleTime;
         }
         return null;
+    }
+
+    public boolean addCategory(String categoryName) {
+        return categoryDao.addCategory(categoryName) ? true : false;
     }
 }

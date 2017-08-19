@@ -24,7 +24,34 @@
             <section class="content">
                 <div class="box">
                     <div class="box-header with-border">
-                        <a class="btn btn-primary" href="${ctx}/article/category/add">添加新目录</a>
+                        <!-- 模态触发按钮 -->
+                        <button type="button" class="btn btn-primary" id="toggleModal">添加新目录</button>
+                    </div>
+                    <!-- 模态框-->
+                    <div class="modal fade" id="myModal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" onclick="window.location.reload();"><span>&times;</span></button>
+                                    <h4 class="modal-title">添加目录</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <form class="form-horizontal" id="category">
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">目录名称：</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" name="categoryName" placeholder="请输入目录名称">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <span id="tip" style="display: none;color:red;font-size:16px;">添加成功！</span>
+                                    <button type="button" class="btn btn-default" onclick="window.location.reload();">关闭</button>
+                                    <button type="button" class="btn btn-primary" id="newCategory">添加</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="box-body">
                         <table id="table" class="table table-bordered table-hover table-striped">
@@ -73,13 +100,32 @@
                         "last" : "末页"
                     },
                 },
-                columns : [ {
-                    data : "category_id"
-                }, {
-                    data : "category_name"
-                }, {
-                    data : "category_count"
-                } ]
+                columns : [ 
+                    { data : "category_id" },
+                    {data : "category_name"},
+                    {data : "category_count"}
+               ]
+            });
+            $("#toggleModal").click(function () {
+                $("#myModal").modal({
+                    show: true,//显示弹出层
+                    backdrop: 'static',//禁止位置关闭
+                    keyboard: false//关闭键盘事件
+                });
+            });
+            $("#newCategory").one('click', function () {
+                var url = "/article/category/new";
+                var data = $("#category").serialize();
+                $.post(url, data, function(result){
+                    if (result) {
+                        $("#tip").fadeIn("slow");
+                        $("#tip").fadeOut("slow");
+                        $("#tip").fadeIn("slow");
+                        $("#tip").fadeOut("slow");
+                        $("#tip").fadeIn("slow");
+                        $("#tip").fadeOut("slow");
+                    }
+                });
             });
         });
     </script>

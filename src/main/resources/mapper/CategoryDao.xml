@@ -22,4 +22,8 @@
         SELECT category_id,category_name FROM t_category
     </select>
     
+    <insert id="addCategory" parameterType="String">
+        INSERT INTO t_category(category_name) VALUES(#{categoryName});
+    </insert>
+    
 </mapper>

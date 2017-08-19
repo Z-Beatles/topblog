@@ -9,7 +9,9 @@ public interface CategoryDao {
     public List<Map<String, String>> listCategory(@Param("offset") int offset, @Param("limit") int limit);
 
     public int countCategory();
-    
+
     public List<Map<Integer, String>> getCategory();
-    
+
+    public boolean addCategory(String categoryName);
+
 }

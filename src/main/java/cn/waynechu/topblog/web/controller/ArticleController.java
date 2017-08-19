@@ -70,6 +70,15 @@ public class ArticleController extends BaseController {
     public String category() {
         return "admin/article/category";
     }
+    
+    @RequestMapping(value = "/category/new", method = RequestMethod.POST)
+    @ResponseBody
+    public String newCategory(String categoryName) {
+        if(articleService.addCategory(categoryName)) {
+            return "{\"success\":1}";
+        }
+        return "";
+    }
 
     @RequestMapping(value = "/category/table.json", method = RequestMethod.POST)
     @ResponseBody

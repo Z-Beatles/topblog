@@ -83,7 +83,7 @@
     <script>
         $(function() {
             var editor = editormd("editormd", {
-                path : "${ctx}/static/plugin/editor.md/lib/",
+                path : "/static/plugin/editor.md/lib/",
                 placeholder : "提示：点击预览按钮可以预览样式。",
                 height : 800,
                 watch : false,
