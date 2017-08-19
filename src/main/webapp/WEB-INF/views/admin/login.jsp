@@ -20,26 +20,21 @@
 					<div class="alert alert-danger">${errormsg}</div>
 				</c:if>
 				<div class="form-group has-feedback">
-					<input type="text" class="form-control" placeholder="帐号"
-						name="username"> <span
-						class="glyphicon glyphicon-user form-control-feedback"></span>
+					<input type="text" class="form-control" placeholder="帐号" name="username">
+                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
 				</div>
 				<div class="form-group has-feedback">
-					<input type="password" class="form-control" placeholder="密码"
-						name="password"> <span
-						class="glyphicon glyphicon-lock form-control-feedback"></span>
+					<input type="password" class="form-control" placeholder="密码" name="password">
+					<span class="glyphicon glyphicon-lock form-control-feedback"></span>
 				</div>
 				<div class="row">
 					<div class="col-xs-8">
 						<div class="checkbox icheck">
-							<label> <input type="checkbox" name="rememberMe">
-								记住我
-							</label>
+							<label><input type="checkbox" name="rememberMe">记住我</label>
 						</div>
 					</div>
 					<div class="col-xs-4">
-						<button type="submit" class="btn btn-primary btn-block btn-flat">
-							登录</button>
+						<button type="submit" class="btn btn-primary btn-block btn-flat">登录</button>
 					</div>
 				</div>
 			</form>
@@ -55,8 +50,8 @@
 		</div>
 	</div>
 
-	<script type="text/javascript" src="${ctx}/static/plugin/bootstrapvalidator-0.5.3/js/bootstrapValidator.js"></script>
-    <script type="text/javascript" src="${ctx}/static/plugin/icheck-1.0.1/icheck.min.js"></script>
+	<script src="${ctx}/static/plugin/bootstrapvalidator-0.5.3/js/bootstrapValidator.js"></script>
+    <script src="${ctx}/static/plugin/icheck-1.0.1/icheck.min.js"></script>
     <script>
         $(document).ready(function() {
             $('.icheck').iCheck({

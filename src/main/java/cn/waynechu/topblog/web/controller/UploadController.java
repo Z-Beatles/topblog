@@ -12,7 +12,7 @@ import cn.waynechu.topblog.base.BaseController;
 @Controller
 @RequestMapping(value = "/upload")
 public class UploadController extends BaseController {
-    @RequestMapping(value = "/image", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
+    @RequestMapping(value = "/image", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
     @ResponseBody
     public String hello(HttpServletRequest request, HttpServletResponse response,
             @RequestParam(value = "editormd-image-file", required = true) MultipartFile attach) {

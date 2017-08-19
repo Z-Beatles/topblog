@@ -4,17 +4,22 @@
 	<select id="listCategory" parameterType="int" resultType="java.util.HashMap">
 		SELECT t.category_id,t.category_name,COUNT(t.article_category_id) AS category_count
 		FROM (
-		  SELECT a.category_id,a.category_name,b.article_category_id
-		  FROM t_category AS a 
-		  LEFT JOIN t_article AS b 
-		  ON a.category_id = b.article_category_id
+		    SELECT a.category_id,a.category_name,b.article_category_id
+		    FROM t_category AS a 
+		    LEFT JOIN t_article AS b 
+		    ON a.category_id = b.article_category_id
 		)AS t
 		GROUP BY t.category_id
 		LIMIT #{offset},#{limit}
 	</select>
 	
 	<select id="countCategory" resultType="int">
-        SELECT Count(t_category.category_id)
+        SELECT Count(category_id)
         FROM t_category
     </select>
+    
+    <select id="getCategory" resultType="java.util.HashMap">
+        SELECT category_id,category_name FROM t_category
+    </select>
+    
 </mapper>

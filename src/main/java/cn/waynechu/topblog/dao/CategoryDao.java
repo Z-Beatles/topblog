@@ -10,4 +10,6 @@ public interface CategoryDao {
 
     public int countCategory();
     
+    public List<Map<Integer, String>> getCategory();
+    
 }

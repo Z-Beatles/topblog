@@ -1,11 +1,15 @@
 package cn.waynechu.topblog.web;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import cn.waynechu.topblog.Constaint;
+import cn.waynechu.topblog.dao.CategoryDao;
 import cn.waynechu.topblog.entity.AdminEntity;
 import cn.waynechu.topblog.entity.LoginUserEntity;
 import cn.waynechu.topblog.service.biz.UserBusiness;
@@ -16,6 +20,9 @@ public class ContextHelper  {
     
     @Autowired
     private UserBusiness userBusiness;
+    
+    @Autowired
+    private CategoryDao categoryDao;
     
 	public Boolean isAdminLogin() {
 		Long id = (Long) SecurityUtils.getSubject().getPrincipal();
@@ -51,5 +58,9 @@ public class ContextHelper  {
             AdminEntity user = userBusiness.getAdminByLoginId(id);
             return user != null ? user.getRoleNameZh() : ("[错误]");
         });
+    }
+    
+    public List<Map<Integer,String>> getArticleCategory() {
+        return categoryDao.getCategory();
     }
 }

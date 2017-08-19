@@ -5,7 +5,7 @@
 <meta name="keywords" content="topblog">
 <meta name="description" content="拓扑部落后台管理系统">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="renderer" content="webkit" />
 <meta name="apple-touch-fullscreen" content="YES" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -13,8 +13,7 @@
 <meta http-equiv="pragma" content="no-cache" />
 <meta http-equiv="cache-control" content="no-cache" />
 <meta http-equiv="expires" content="0" />
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<link rel="shortcut icon" type="image/x-icon" href="${ctx}/static/favicon.ico" />
+<link rel="icon" type="image/x-icon" href="${ctx}/static/favicon.ico" />
 <!-- Common CSS -->
 <link rel="stylesheet" href="${ctx}/static/plugin/adminlte-2.3.7/css/AdminLTE.min.css">
 <link rel="stylesheet" href="${ctx}/static/plugin/adminlte-2.3.7/css/skins/skin-purple.min.css">
@@ -22,7 +21,7 @@
 <link rel="stylesheet" href="${ctx}/static/plugin/font-awesome-4.5.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="${ctx}/static/plugin/ionicons-2.0.1/css/ionicons.min.css">
 <!-- Common JS -->
-<script type="text/javascript" src="${ctx}/static/plugin/jquery-2.2.3/jquery.js"></script>
-<script type="text/javascript" src="${ctx}/static/plugin/bootstrap-3.3.7/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="${ctx}/static/plugin/adminlte-2.3.7/js/adminlte.min.js"></script>
+<script src="${ctx}/static/plugin/jquery-2.2.3/jquery.js"></script>
+<script src="${ctx}/static/plugin/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+<script src="${ctx}/static/plugin/adminlte-2.3.7/js/adminlte.min.js"></script>
 <!-- 公共头文件 END -->

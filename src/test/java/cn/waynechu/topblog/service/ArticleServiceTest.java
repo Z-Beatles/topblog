@@ -10,7 +10,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import cn.waynechu.topblog.Result;
 import cn.waynechu.topblog.dao.ArticleDao;
 import cn.waynechu.topblog.dao.CategoryDao;
-import cn.waynechu.topblog.entity.ArticleEnitiy;
+import cn.waynechu.topblog.entity.ArticleEntity;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({ "classpath:spring/spring-dao.xml" })
@@ -34,9 +34,9 @@ public class ArticleServiceTest {
     
     @Test
     public void listArticle()throws Exception {
-        List<ArticleEnitiy> list = articleDao.listArticle(0,10);
+        List<ArticleEntity> list = articleDao.listArticle(0,10);
         int count = articleDao.countArticle();
-        Result<List<ArticleEnitiy>> result = Result.target(list);
+        Result<List<ArticleEntity>> result = Result.target(list);
         result.attr("totalRecords", count);
         result.attr("totalDisplayRecords", count);
         System.out.println(result);

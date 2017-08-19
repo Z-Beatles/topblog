@@ -36,7 +36,6 @@
                                     <th>标题</th>
                                     <th>作者</th>
                                     <th>分类目录</th>
-                                    <th>标签</th>
                                     <th>发布日期</th>
                                 </tr>
                             </thead>
@@ -49,8 +48,8 @@
         <div class="control-sidebar-bg" style="position: fixed; height: auto;"></div>
     </div>
     
-    <script type="text/javascript" src="${ctx}/static/plugin/datatables-1.10.15/js/jquery.dataTables.js"></script>
-    <script type="text/javascript">
+    <script src="${ctx}/static/plugin/datatables-1.10.15/js/jquery.dataTables.js"></script>
+    <script>
         $(document).ready(function(){
             var dt=$('#table').DataTable({
                 serverSide:true,
@@ -78,7 +77,6 @@
                     {data:"articleTitle"},
                     {data:"articleAuthor"},
                     {data:"articleCategory"},
-                    {data:"articleTag"},
                     {data:"articleTime"}
                 ]
             });
