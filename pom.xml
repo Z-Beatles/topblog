@@ -181,10 +181,10 @@
 			<version>${commons-collections4.version}</version>
 		</dependency>
 		<dependency>
-            <groupId>commons-fileupload</groupId>
-            <artifactId>commons-fileupload</artifactId>
-         <version>${commons-fileupload.version}</version>
-        </dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>${commons-fileupload.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
@@ -212,7 +212,7 @@
 
 	<build>
 		<finalName>topblog</finalName>
-		<!-- 配置tomcat插件 -->
+		<!-- tomcat插件 -->
 		<plugins>
 			<plugin>
 				<groupId>org.apache.tomcat.maven</groupId>
@@ -224,6 +224,12 @@
 					<useBodyEncodingForURI>true</useBodyEncodingForURI>
 					<contextReloadable>true</contextReloadable>
 				</configuration>
+			</plugin>
+			<!-- jetty插件 -->
+			<plugin>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>9.4.6.v20170531</version>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
