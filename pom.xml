@@ -212,7 +212,7 @@
 
 	<build>
 		<finalName>topblog</finalName>
-		<!-- tomcat插件 -->
+		<!-- tomcat 插件 -->
 		<plugins>
 			<plugin>
 				<groupId>org.apache.tomcat.maven</groupId>
@@ -225,7 +225,7 @@
 					<contextReloadable>true</contextReloadable>
 				</configuration>
 			</plugin>
-			<!-- jetty插件 -->
+			<!-- jetty 插件 -->
 			<plugin>
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>

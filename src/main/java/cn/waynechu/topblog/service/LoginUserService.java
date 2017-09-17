@@ -3,11 +3,15 @@ package cn.waynechu.topblog.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
 import cn.waynechu.topblog.dao.LoginUserDao;
 import cn.waynechu.topblog.entity.LoginUserEntity;
 
 @Service
+@Scope(scopeName = ConfigurableBeanFactory.SCOPE_SINGLETON, proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class LoginUserService {
     
     @Autowired

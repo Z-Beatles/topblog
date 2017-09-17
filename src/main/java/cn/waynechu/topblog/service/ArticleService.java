@@ -4,14 +4,19 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
 import cn.waynechu.topblog.Result;
 import cn.waynechu.topblog.dao.ArticleDao;
 import cn.waynechu.topblog.dao.CategoryDao;
 import cn.waynechu.topblog.dto.DataTableParam;
 import cn.waynechu.topblog.entity.ArticleEntity;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Scope(scopeName = ConfigurableBeanFactory.SCOPE_SINGLETON, proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class ArticleService {
 
     @Autowired
@@ -38,6 +43,7 @@ public class ArticleService {
         return result;
     }
 
+    @Transactional
     public Date saveArticle(ArticleEntity articleEnitiy) {
         Date articleTime = new Date();
         articleEnitiy.setArticleTime(articleTime);
@@ -48,6 +54,7 @@ public class ArticleService {
         return null;
     }
 
+    @Transactional
     public boolean addCategory(String categoryName) {
         return categoryDao.addCategory(categoryName) ? true : false;
     }
