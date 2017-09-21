@@ -55,7 +55,10 @@ public class AdminController extends BaseController{
             } catch (AuthenticationException e) {
                 logger.warn("--->系统错误", e);
                 model.addAttribute("errormsg", "系统错误，请稍候再试！");
+            }catch (Exception e){
+                logger.debug("登录异常："+e.toString());
             }
+
         }
         return "admin/login";
     }
