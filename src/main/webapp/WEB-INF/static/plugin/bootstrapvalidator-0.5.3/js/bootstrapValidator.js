@@ -349,7 +349,7 @@ if (typeof jQuery === 'undefined') {
                     && (!updateAll || i === total - 1))
                 {
                     // $parent.removeClass('has-success').removeClass('has-error').addClass('has-feedback');
-                    // Keep error messages which are populated from back-end
+                    // Keep error messages which are populated from admin-end
                     $parent.addClass('has-feedback');
                     var $icon = $('<i/>')
                                     .css('display', 'none')

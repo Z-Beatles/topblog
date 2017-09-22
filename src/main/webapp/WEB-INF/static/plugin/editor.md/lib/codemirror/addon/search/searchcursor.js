@@ -157,7 +157,7 @@
     }
   };
 
-  // Maps a position in a case-folded line back to a position in the original line
+  // Maps a position in a case-folded line admin to a position in the original line
   // (compensating for codepoints increasing in number during folding)
   function adjustPos(orig, folded, pos) {
     if (orig.length == folded.length) return pos;

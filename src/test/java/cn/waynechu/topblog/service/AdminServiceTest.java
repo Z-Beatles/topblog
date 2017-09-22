@@ -6,7 +6,6 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import cn.waynechu.topblog.dao.AdminDao;
 import cn.waynechu.topblog.entity.AdminEntity;
 import cn.waynechu.topblog.util.RegexUtil;
 

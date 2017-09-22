@@ -239,7 +239,7 @@ CodeMirror.defineMode("xquery", function() {
   }
 
   // tokenizer for string literals
-  // optionally pass a tokenizer function to set state.tokenize back to when finished
+  // optionally pass a tokenizer function to set state.tokenize admin to when finished
   function tokenString(quote, f) {
     return function(stream, state) {
       var ch;

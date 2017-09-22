@@ -1,19 +1,21 @@
 package cn.waynechu.topblog.service;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import cn.waynechu.topblog.AppException;
+import cn.waynechu.topblog.Result;
+import cn.waynechu.topblog.dao.ArticleDao;
+import cn.waynechu.topblog.dao.CategoryDao;
+import cn.waynechu.topblog.entity.ArticleEntity;
+import cn.waynechu.topblog.model.DataTableParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
-import cn.waynechu.topblog.Result;
-import cn.waynechu.topblog.dao.ArticleDao;
-import cn.waynechu.topblog.dao.CategoryDao;
-import cn.waynechu.topblog.dto.DataTableParam;
-import cn.waynechu.topblog.entity.ArticleEntity;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 @Service
 @Scope(scopeName = ConfigurableBeanFactory.SCOPE_SINGLETON, proxyMode = ScopedProxyMode.TARGET_CLASS)
@@ -34,6 +36,10 @@ public class ArticleService {
         return result;
     }
 
+    public List<Map<String, String>> getArticleCategory() {
+        return categoryDao.getCategory();
+    }
+
     public Result<List<ArticleEntity>> listArticle(DataTableParam tableParam) {
         List<ArticleEntity> list = articleDao.listArticle(tableParam.getStart(), tableParam.getLength());
         int count = articleDao.countArticle();
@@ -47,15 +53,31 @@ public class ArticleService {
     public Date saveArticle(ArticleEntity articleEnitiy) {
         Date articleTime = new Date();
         articleEnitiy.setArticleTime(articleTime);
-        boolean flag = articleDao.saveArticle(articleEnitiy);
-        if (flag) {
-            return articleTime;
+        ArticleEntity oldArticle = articleDao.getArticleByTitle(articleEnitiy.getArticleTitle());
+        if (oldArticle == null) {
+            if (articleDao.saveArticle(articleEnitiy) == 0) {
+                throw new AppException(2, "添加文章失败");
+            }
+        } else {
+            articleEnitiy.setArticleId(oldArticle.getArticleId());
+            int flag = articleDao.updateArticle(articleEnitiy);
+            if (flag == 0) {
+                throw new AppException(2, "更新文章失败");
+            }
         }
-        return null;
+        return articleTime;
+    }
+
+    public void deleteArticle(String articleId) {
+        articleDao.deleteArticle(articleId);
     }
 
     @Transactional
     public boolean addCategory(String categoryName) {
         return categoryDao.addCategory(categoryName) ? true : false;
+    }
+
+    public ArticleEntity getArticleById(Long articleId) {
+        return articleDao.getArticleById(articleId);
     }
 }

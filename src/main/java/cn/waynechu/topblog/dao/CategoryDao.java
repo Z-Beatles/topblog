@@ -10,7 +10,7 @@ public interface CategoryDao {
 
     public int countCategory();
 
-    public List<Map<Integer, String>> getCategory();
+    public List<Map<String, String>> getCategory();
 
     public boolean addCategory(String categoryName);
 

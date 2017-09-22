@@ -1,39 +1,68 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.waynechu.topblog.dao.ArticleDao">
-	<select id="listArticle" parameterType="int" resultType="cn.waynechu.topblog.entity.ArticleEntity">
-		SELECT
-			a.article_id,
-			a.article_title,
-			d.username AS article_author,
-			b.category_name AS article_category,
-			a.article_time,a.article_content
-		FROM 
-		    t_article AS a,
-		    t_category AS b,
-		    t_user_login AS d
-		WHERE a.article_author_id = d.id
-		AND a.article_category_id = b.category_id
-		LIMIT #{offset},#{limit}
-	</select>
-	
-	<select id="countArticle" resultType="int">
-        SELECT Count(t_article.article_id)
-        FROM t_article
+
+
+    <select id="listArticle" parameterType="int" resultType="cn.waynechu.topblog.entity.ArticleEntity">
+        SELECT
+            a.article_id,
+            a.article_title,
+            d.username      AS article_author,
+            b.category_name AS article_category,
+            a.article_time,
+            a.article_content
+        FROM
+            topblog.t_article AS a,
+            topblog.t_category AS b,
+            topblog.t_user_login AS d
+        WHERE a.article_author_id = d.id
+              AND a.article_category_id = b.category_id
+        LIMIT #{offset}, #{limit}
     </select>
 
-	<insert id="saveArticle">
-	    INSERT INTO t_article(
-		    article_title,
-		    article_author_id,
-		    article_category_id,
-		    article_time,article_content)
-        VALUES(
-	        #{articleEnitiy.articleTitle},
-	        #{articleEnitiy.articleAuthorID},
-	        #{articleEnitiy.articleCategoryID},
-	        #{articleEnitiy.articleTime},
-	        #{articleEnitiy.articleContent})
-	</insert>
+    <select id="countArticle" resultType="int">
+        SELECT Count(t_article.article_id)
+        FROM topblog.t_article
+    </select>
+
+    <select id="getArticleByTitle" resultType="cn.waynechu.topblog.entity.ArticleEntity">
+        SELECT *
+        FROM topblog.t_article
+        WHERE article_title = #{articleTitle}
+    </select>
+
+    <select id="getArticleById" resultType="cn.waynechu.topblog.entity.ArticleEntity">
+        SELECT *
+        FROM topblog.t_article
+        WHERE article_id = #{articleId}
+    </select>
+
+    <update id="updateArticle">
+        UPDATE topblog.t_article
+        SET article_title     = #{articleEnitiy.articleTitle},
+            article_category_id = #{articleEnitiy.articleCategoryID},
+            article_time      = #{articleEnitiy.articleTime},
+            article_content   = #{articleEnitiy.articleContent}
+        WHERE article_id = #{articleEnitiy.articleId}
+    </update>
+
+    <insert id="saveArticle">
+        INSERT IGNORE INTO topblog.t_article (
+            article_title,
+            article_author_id,
+            article_category_id,
+            article_time, article_content)
+        VALUES (
+            #{articleEnitiy.articleTitle},
+            #{articleEnitiy.articleAuthorID},
+            #{articleEnitiy.articleCategoryID},
+            #{articleEnitiy.articleTime},
+            #{articleEnitiy.articleContent})
+    </insert>
+
+    <delete id="deleteArticle">
+        DELETE FROM topblog.t_article
+        WHERE article_id = #{articleId}
+    </delete>
 
 </mapper>

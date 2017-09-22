@@ -30,11 +30,9 @@ public abstract class BaseController{
 			try {
 				response.setCharacterEncoding("UTF-8");
 				response.setContentType("application/json;charset=UTF-8");
-				
 				ObjectMapper objectMapper = new ObjectMapper();
 				objectMapper.writeValue(response.getWriter(), error);
-
-			} catch (IOException e) {
+			} catch (IOException ignored) {
 			}
 			return null;
 		} else {

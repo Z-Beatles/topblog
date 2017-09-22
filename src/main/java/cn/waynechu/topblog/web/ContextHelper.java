@@ -1,66 +1,52 @@
 package cn.waynechu.topblog.web;
 
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import org.apache.commons.lang3.StringUtils;
+import cn.waynechu.topblog.dao.CategoryDao;
+import cn.waynechu.topblog.service.AuthorizationService;
+import cn.waynechu.topblog.service.biz.UserBusiness;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import cn.waynechu.topblog.Constaint;
-import cn.waynechu.topblog.dao.CategoryDao;
-import cn.waynechu.topblog.entity.AdminEntity;
-import cn.waynechu.topblog.entity.LoginUserEntity;
-import cn.waynechu.topblog.service.biz.UserBusiness;
-import cn.waynechu.topblog.util.WebUtil;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+import java.util.Map;
 
 @Component
-public class ContextHelper  {
-    
+@SuppressWarnings("unchecked")
+public class ContextHelper {
+
     @Autowired
     private UserBusiness userBusiness;
-    
+
     @Autowired
     private CategoryDao categoryDao;
-    
-	public Boolean isAdminLogin() {
-		Long id = (Long) SecurityUtils.getSubject().getPrincipal();
-		if (id == null) {
-			return false;
-		}
-		LoginUserEntity loginUser = userBusiness.getLoginUserById(id);
-		return loginUser != null && StringUtils.equals(loginUser.getLoginType(), Constaint.LOGINTYPE_ADMIN);
-	}
-	
-    public String adminAvatar(HttpServletRequest request) {
-        return WebUtil.withHttpSession(request.getSession(), Constaint.WEBSESSION_ADMINAVATAR, () -> {
-            Long id = (Long) SecurityUtils.getSubject().getPrincipal();
-            LoginUserEntity loginUserEntity = userBusiness.getLoginUserById(id);
-            if(loginUserEntity != null) {
-                return loginUserEntity.getAvatar();
-            }
-            return "/static/image/user.jpg";
-        });
+
+    @Autowired
+    private AuthorizationService authorizationService;
+
+
+    public Boolean isUserLogin() {
+        Map<String, Object> principal = (Map<String, Object>) SecurityUtils.getSubject().getPrincipal();
+        return principal != null;
     }
-    
-    public String adminNickname(HttpServletRequest request) {
-        return WebUtil.withHttpSession(request.getSession(), Constaint.WEBSESSION_ADMINNICKNAME, () -> {
-            Long id = (Long) SecurityUtils.getSubject().getPrincipal();
-            AdminEntity user = userBusiness.getAdminByLoginId(id);
-            return user != null ? user.getNickname() : ("[错误]");
-        });
+
+    public String userAvatar(HttpServletRequest request) {
+        Map<String, Object> principal = (Map<String, Object>) SecurityUtils.getSubject().getPrincipal();
+        String avatar = (String) principal.get("avatar");
+        return avatar != null ? avatar : "/static/image/user.jpg";
     }
-    
-    public String adminRolename(HttpServletRequest request) {
-        return WebUtil.withHttpSession(request.getSession(),Constaint.WEBSESSION_ADMINROLENAME, () -> {
-            Long id = (Long) SecurityUtils.getSubject().getPrincipal();
-            AdminEntity user = userBusiness.getAdminByLoginId(id);
-            return user != null ? user.getRoleNameZh() : ("[错误]");
-        });
+
+    public String userNickname(HttpServletRequest request) {
+        Map<String, Object> principal = (Map<String, Object>) SecurityUtils.getSubject().getPrincipal();
+        String nickname = (String) principal.get("nickname");
+        return nickname != null ? nickname : "[未知用户]";
     }
-    
-    public List<Map<Integer,String>> getArticleCategory() {
-        return categoryDao.getCategory();
+
+    public String userRolename(HttpServletRequest request) {
+        Map<String, Object> principal = (Map<String, Object>) SecurityUtils.getSubject().getPrincipal();
+        Long id = (Long) principal.get("loginId");
+        List<String> roles = authorizationService.getRolesByLoginUserId(id);
+        return roles != null ? roles.get(0) : ("[未知角色]");
     }
+
 }
