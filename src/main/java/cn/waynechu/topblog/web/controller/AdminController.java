@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 import cn.waynechu.topblog.base.BaseController;
 import cn.waynechu.topblog.shiro.token.LoginAuthenticationToken;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 @RequestMapping
 public class AdminController extends BaseController{
@@ -29,9 +31,12 @@ public class AdminController extends BaseController{
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String loginAction(Model model, String loginType, String username, String password, boolean rememberMe)
+    public String loginAction(HttpServletRequest request, Model model, String loginType, String username, String password, boolean rememberMe)
             throws IOException {
         Subject currentUser = SecurityUtils.getSubject();
+
+
+
 
         if (!currentUser.isAuthenticated()) {
             LoginAuthenticationToken token = new LoginAuthenticationToken(loginType, username, password, rememberMe,
@@ -42,7 +47,8 @@ public class AdminController extends BaseController{
                 return "redirect:/";
             } catch (UnknownAccountException e) {
                 logger.warn("--->该用户不存在", e);
-                model.addAttribute("errormsg", "用户名或密码错误，请重新输入");
+                request.getSession().removeAttribute("userCountNum");
+                request.getSession().setAttribute("errormsg","用户不存在，请重新输入");
             } catch (LockedAccountException e) {
                 logger.warn("--->该用户被锁定", e);
                 model.addAttribute("errormsg", "抱歉，该帐号被锁定");
@@ -51,18 +57,16 @@ public class AdminController extends BaseController{
                 model.addAttribute("errormsg", "抱歉，该帐号已禁用");
             } catch (IncorrectCredentialsException e) {
                 logger.warn("--->密码错误", e);
-                model.addAttribute("errormsg", "用户名或密码错误，请重新输入");
+                request.getSession().setAttribute("errormsg","密码错误，请重新输入");
+                request.getSession().setAttribute("userCountNum",username);
             } catch (AuthenticationException e) {
                 logger.warn("--->系统错误", e);
                 model.addAttribute("errormsg", "系统错误，请稍候再试！");
-            }catch (Exception e){
-                logger.debug("登录异常："+e.toString());
             }
-
         }
-        return "admin/login";
+        return "redirect:admin/login";
     }
-    
+
     @RequestMapping(value = "/unauthorized", method = RequestMethod.GET)
     public String unauthorized() {
         return "/unauthorized";
