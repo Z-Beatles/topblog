@@ -44,24 +44,23 @@ public class AdminController extends BaseController{
             token.setRememberMe(rememberMe);
             try {
                 currentUser.login(token);
+                request.getSession().setAttribute("userCountNum",username);
                 return "redirect:/";
             } catch (UnknownAccountException e) {
                 logger.warn("--->该用户不存在", e);
                 request.getSession().removeAttribute("userCountNum");
-                request.getSession().setAttribute("errormsg","用户不存在，请重新输入");
+                request.getSession().setAttribute("errormsg","用户不存在，请重新输入！");
             } catch (LockedAccountException e) {
                 logger.warn("--->该用户被锁定", e);
-                model.addAttribute("errormsg", "抱歉，该帐号被锁定");
-            } catch (DisabledAccountException e) {
+                request.getSession().setAttribute("errormsg","用户被锁定！");
                 logger.warn("--->该用户已禁用", e);
-                model.addAttribute("errormsg", "抱歉，该帐号已禁用");
+                request.getSession().setAttribute("errormsg","该用户已禁用！");
             } catch (IncorrectCredentialsException e) {
                 logger.warn("--->密码错误", e);
-                request.getSession().setAttribute("errormsg","密码错误，请重新输入");
-                request.getSession().setAttribute("userCountNum",username);
+                request.getSession().setAttribute("errormsg","密码错误，请重新输入密码！");
             } catch (AuthenticationException e) {
                 logger.warn("--->系统错误", e);
-                model.addAttribute("errormsg", "系统错误，请稍候再试！");
+                request.getSession().setAttribute("errormsg","系统异常！");
             }
         }
         return "redirect:admin/login";
