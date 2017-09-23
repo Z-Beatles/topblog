@@ -355,7 +355,7 @@ CodeMirror.defineMode("perl",function(){
                 'log'                           :1,     // - retrieve the natural logarithm for a number
                 lstat                           :1,     // - stat a symbolic link
                 m                               :null,  // - match a string with a regular expression pattern
-                map                             :1,     // - apply a change to a list to get back a new list with the changes
+                map                             :1,     // - apply a change to a list to get admin a new list with the changes
                 mkdir                           :1,     // - create a directory
                 msgctl                          :1,     // - SysV IPC message control operations
                 msgget                          :1,     // - get SysV IPC message queue

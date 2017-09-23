@@ -1,4 +1,4 @@
-package cn.waynechu.topblog.web.controller;
+package cn.waynechu.topblog.web.controller.admin;
 
 import java.io.File;
 import javax.servlet.http.HttpServletRequest;
@@ -10,7 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 import cn.waynechu.topblog.base.BaseController;
 
 @Controller
-@RequestMapping(value = "/upload")
+@RequestMapping(value = "/admin/upload")
 public class UploadController extends BaseController {
     @RequestMapping(value = "/image", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
     @ResponseBody

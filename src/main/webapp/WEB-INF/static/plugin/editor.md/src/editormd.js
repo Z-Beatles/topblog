@@ -4365,7 +4365,7 @@
             };
 
             var userUnselect = function (obj) {
-                obj.addClass(classPrefix + "user-unselect").on("selectstart", function(event) { // selectstart for IE                        
+                obj.addClass(classPrefix + "user-unselect").on("selectstart", function(event) { // selectstart for IE
                     return false;
                 });
             };

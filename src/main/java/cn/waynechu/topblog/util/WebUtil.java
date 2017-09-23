@@ -1,22 +1,57 @@
 package cn.waynechu.topblog.util;
 
+import cn.waynechu.topblog.AppException;
+import cn.waynechu.topblog.Constaint;
+import cn.waynechu.topblog.Result;
+import com.google.common.base.Throwables;
+
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Supplier;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import org.apache.shiro.web.servlet.ShiroHttpServletRequest;
-import org.apache.shiro.web.util.SavedRequest;
-import org.apache.shiro.web.util.WebUtils;
-import org.springframework.web.context.request.ServletWebRequest;
-import org.springframework.web.context.request.WebRequest;
-import com.google.common.base.Throwables;
-import cn.waynechu.topblog.AppException;
-import cn.waynechu.topblog.Constaint;
 
 public class WebUtil {
+    public static <T> Map<String, Object> result(String successMsg, String errorMsg, Result<T> data) {
+        Map<String, Object> result = new LinkedHashMap<>();
+        if (data.hasError()) {
+            result.put("success", false);
+            result.put("message", errorMsg);
+            result.put("error", data.error());
+        } else {
+            result.put("success", true);
+            result.put("message", successMsg);
+            result.put("data", data.target());
+        }
+        return result;
+    }
+
+    public static Map<String, Object> success(String message) {
+        Map<String, Object> result = new LinkedHashMap<>();
+        result.put("success", true);
+        result.put("message", message);
+        return result;
+    }
+
+    public static Map<String, Object> success(String message, Object obj, String... candidates) {
+        Map<String, Object> result = new LinkedHashMap<>();
+        result.put("success", true);
+        result.put("message", message);
+        if (obj == null) {
+            result.put("data", null);
+        } else if (ObjectUtil.isListSupport(obj)) {
+            result.put("data", ObjectUtil.toDataList(obj, candidates));
+        } else {
+            result.put("data", ObjectUtil.toDataObject(obj, candidates));
+        }
+        return result;
+    }
+
+    public static Map<String, Object> error(String message) {
+        Map<String, Object> result = new LinkedHashMap<>();
+        result.put("success", false);
+        result.put("message", message);
+        return result;
+    }
+
     public static Map<String, Object> error(Exception exception, boolean trace) {
         Map<String, Object> result = new LinkedHashMap<>();
         result.put("success", false);
@@ -38,34 +73,6 @@ public class WebUtil {
         return result;
     }
 
-    public static HttpServletRequest getNativeRequest(WebRequest request) {
-        HttpServletRequest req = ((ServletWebRequest) request).getNativeRequest(HttpServletRequest.class);
-        if (req instanceof ShiroHttpServletRequest) {
-            return (HttpServletRequest) ((ShiroHttpServletRequest) req).getRequest();
-        }
-        return req;
-    }
-
-    public static String getShiroRequestURI(WebRequest request) {
-        SavedRequest savedRequest = WebUtils.getSavedRequest(getNativeRequest(request));
-        if (savedRequest != null) {
-            return savedRequest.getRequestURI();
-        }
-        return null;
-    }
-
-    @SuppressWarnings("unchecked")
-    public static <T> T withHttpSession(HttpSession session, String key, Supplier<T> supplier) {
-        T result = (T) session.getAttribute(key);
-        if (result == null) {
-            synchronized (session) {
-                result = supplier.get();
-                session.setAttribute(key, result);
-            }
-        }
-        return result;
-    }
-    
     public static Map<String, ?> dataTable(List<?> data, Integer draw, Object recordsTotal, Object recordsFiltered) {
         Map<String, Object> result = new LinkedHashMap<>();
         result.put("success", true);

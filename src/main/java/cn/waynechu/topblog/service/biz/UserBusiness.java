@@ -1,44 +1,31 @@
 package cn.waynechu.topblog.service.biz;
 
-import java.util.List;
+import cn.waynechu.topblog.entity.LoginUserEntity;
+import cn.waynechu.topblog.entity.UserEntity;
+import cn.waynechu.topblog.service.LoginUserService;
+import cn.waynechu.topblog.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import cn.waynechu.topblog.Constaint;
-import cn.waynechu.topblog.entity.AdminEntity;
-import cn.waynechu.topblog.entity.LoginUserEntity;
-import cn.waynechu.topblog.service.AdminService;
-import cn.waynechu.topblog.service.LoginUserService;
 
 @Component
-public class UserBusiness{
-    
+public class UserBusiness {
+
     @Autowired
-    private AdminService adminService;
+    private UserService userService;
 
     @Autowired
     private LoginUserService loginUserService;
 
-    public LoginUserEntity getLoginUserByAccount(String loginType, String account) {
-        if (Constaint.LOGINTYPE_ADMIN.equalsIgnoreCase(loginType)) {
-            AdminEntity user = adminService.getByAccount(account);
-            if (user == null) {
-                return null;
-            }
-            return loginUserService.getByLoginTypeAndUsername(Constaint.LOGINTYPE_ADMIN, user.getUsername());
+    public LoginUserEntity getLoginUserByAccount(String account) {
+        UserEntity user = userService.getUserByAccount(account);
+        if (user == null) {
+            return null;
         }
-        return null;
+        return loginUserService.getLoginUserByUsername(user.getUsername());
     }
 
-    public LoginUserEntity getLoginUserById(Long id) {
-        return loginUserService.getByLoginId(id);
+    public UserEntity getUserByLoginId(Long id) {
+        return userService.getUserByLoginId(id);
     }
 
-    public List<String> getPermissionsForLoginUser(LoginUserEntity user) {
-        return loginUserService.getPermissionsForLoginUserId(user.getId());
-    }
-
-    public AdminEntity getAdminByLoginId(Long id) {
-        return adminService.getByLoginId(id);
-        
-    }
 }

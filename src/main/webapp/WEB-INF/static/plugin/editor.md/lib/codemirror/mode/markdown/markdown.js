@@ -489,7 +489,7 @@ CodeMirror.defineMode("markdown", function(cmCfg, modeCfg) {
       if (stream.eat('*') || stream.eat('_')) { // Probably surrounded by spaces
         if (stream.peek() === ' ') { // Surrounded by spaces, ignore
           return getType(state);
-        } else { // Not surrounded by spaces, back up pointer
+        } else { // Not surrounded by spaces, admin up pointer
           stream.backUp(1);
         }
       }
@@ -511,7 +511,7 @@ CodeMirror.defineMode("markdown", function(cmCfg, modeCfg) {
         if (stream.match(/^~~/, true)) { // Probably surrounded by space
           if (stream.peek() === ' ') { // Surrounded by spaces, ignore
             return getType(state);
-          } else { // Not surrounded by spaces, back up pointer
+          } else { // Not surrounded by spaces, admin up pointer
             stream.backUp(2);
           }
         }

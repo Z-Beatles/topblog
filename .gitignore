@@ -6,8 +6,7 @@
 .project
 .DS_Store
 .springBeans
+*.iml
 
 bower_components/
 node_modules/
-
-jdbc.properties

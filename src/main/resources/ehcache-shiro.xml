@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE xml>
 <ehcache updateCheck="false">
-	<diskStore path="java.io.tmpdir/waynechu/topblog_2017.07.25" />
+	<diskStore path="java.io.tmpdir\topblog_2017.07.25" />
 
 	<defaultCache
 	   maxElementsInMemory="10000"

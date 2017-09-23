@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.waynechu.topblog.dao.CategoryDao">
-	<select id="listCategory" parameterType="int" resultType="java.util.HashMap">
+	<select id="listCategory" parameterType="int" resultType="java.util.Map">
 		SELECT t.category_id,t.category_name,COUNT(t.article_category_id) AS category_count
 		FROM (
 		    SELECT a.category_id,a.category_name,b.article_category_id
@@ -18,7 +18,7 @@
         FROM t_category
     </select>
     
-    <select id="getCategory" resultType="java.util.HashMap">
+    <select id="getCategory" resultType="java.util.Map">
         SELECT category_id,category_name FROM t_category
     </select>
     

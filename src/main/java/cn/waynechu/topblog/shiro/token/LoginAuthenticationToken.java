@@ -12,8 +12,7 @@ public class LoginAuthenticationToken implements HostAuthenticationToken, Rememb
     private boolean rememberMe = false;
     private String host;
 
-    public LoginAuthenticationToken(String loginType, String username, String password, boolean rememberMe,
-            String host) {
+    public LoginAuthenticationToken(String loginType, String username, String password, boolean rememberMe, String host) {
         this.loginType = loginType;
         this.username = username;
         this.password = password;

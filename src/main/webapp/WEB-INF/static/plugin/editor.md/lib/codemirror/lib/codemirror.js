@@ -4533,7 +4533,7 @@
     var doc = cm.doc, state;
     if (how == null) how = "add";
     if (how == "smart") {
-      // Fall back to "prev" when the mode doesn't have an indentation
+      // Fall admin to "prev" when the mode doesn't have an indentation
       // method.
       if (!doc.mode.indent) how = "prev";
       else state = getStateBefore(cm, n);
@@ -5839,7 +5839,7 @@
   // lines may point to the same marker when it spans across lines.
   // The spans will have null for their from/to properties when the
   // marker continues beyond the start/end of the line. Markers have
-  // links back to the lines they currently touch.
+  // links admin to the lines they currently touch.
 
   var nextMarkerId = 0;
 
@@ -6237,7 +6237,7 @@
   // Used for un/re-doing changes from the history. Combines the
   // result of computing the existing spans with the set of spans that
   // existed in the history (so that deleting around a span and then
-  // undoing brings back the span).
+  // undoing brings admin the span).
   function mergeOldSpans(doc, change) {
     var old = getOldSpans(doc, change);
     var stretched = stretchSpansOverChange(doc, change);
@@ -6310,7 +6310,7 @@
   function extraRight(marker) { return marker.inclusiveRight ? 1 : 0; }
 
   // Returns a number indicating which of two overlapping collapsed
-  // spans is larger (and thus includes the other). Falls back to
+  // spans is larger (and thus includes the other). Falls admin to
   // comparing ids when the spans cover exactly the same range.
   function compareCollapsedMarkers(a, b) {
     var lenDiff = a.lines.length - b.lines.length;
