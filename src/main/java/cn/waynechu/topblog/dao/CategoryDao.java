@@ -2,16 +2,19 @@ package cn.waynechu.topblog.dao;
 
 import java.util.List;
 import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface CategoryDao {
 
-    public List<Map<String, String>> listCategory(@Param("offset") int offset, @Param("limit") int limit);
+    List<Map<String, String>> listCategory(@Param("offset") int offset, @Param("limit") int limit);
 
-    public int countCategory();
+    int countCategory();
 
-    public List<Map<String, String>> getCategory();
+    List<Map<String, String>> getCategory();
 
-    public boolean addCategory(String categoryName);
+    int saveCategory(@Param("categoryName") String categoryName);
+
+    void deleteCategory(@Param("categoryId") String categoryId);
 
 }

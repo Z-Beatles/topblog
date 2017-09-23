@@ -29,7 +29,7 @@
                     <a class="btn btn-primary" href="${ctx}/admin/user/add">添加用户</a>
                 </div>
                 <div class="box-body">
-                    <table id="table" class="table table-bordered table-hover table-striped">
+                    <table id="table" class="table table-bordered table-hover table-striped" style="width: 100%">
                         <thead>
                         <tr>
                             <th><input type="checkbox" table-column-selector/></th>

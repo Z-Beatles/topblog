@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -52,7 +51,6 @@ public class ArticleController extends BaseController {
 
     @RequestMapping(value = "/new", method = RequestMethod.POST)
     @ResponseBody
-
     public Map<String, Object> newArticle(ArticleEntity articleEntity) {
         Map<String, Object> principal = (Map<String, Object>) SecurityUtils.getSubject().getPrincipal();
         Long id = (Long) principal.get("loginId");
@@ -72,8 +70,8 @@ public class ArticleController extends BaseController {
     @ResponseBody
     public Map<String, Object> deleteArticles(String ids) {
         String[] item = ids.split(",");
-        for (int i = 0; i < item.length; i++) {
-            articleService.deleteArticle(item[i]);
+        for (String anItem : item) {
+            articleService.deleteArticle(anItem);
         }
         return WebUtil.success(Constaint.DELETE_SUCCESS);
     }
@@ -86,10 +84,10 @@ public class ArticleController extends BaseController {
     @RequestMapping(value = "/edit/{articleId}", method = RequestMethod.GET)
     public String edit(Model model, @PathVariable("articleId") Long articleId) {
         ArticleEntity articleEntity = articleService.getArticleById(articleId);
-        model.addAttribute("articleTitle",articleEntity.getArticleTitle());
-        model.addAttribute("articleCategoryID",String.valueOf(articleEntity.getArticleCategoryID()));
-        model.addAttribute("articleContent",articleEntity.getArticleContent());
-        model.addAttribute("articleTime",articleEntity.getArticleTime());
+        model.addAttribute("articleTitle", articleEntity.getArticleTitle());
+        model.addAttribute("articleCategoryID", String.valueOf(articleEntity.getArticleCategoryID()));
+        model.addAttribute("articleContent", articleEntity.getArticleContent());
+        model.addAttribute("articleTime", articleEntity.getArticleTime());
 
         List<Map<String, String>> articleCategory = articleService.getArticleCategory();
         model.addAttribute("articleCategory", articleCategory);
@@ -101,15 +99,6 @@ public class ArticleController extends BaseController {
         return "admin/article/category";
     }
 
-    @RequestMapping(value = "/category/new", method = RequestMethod.POST)
-    @ResponseBody
-    public String newCategory(String categoryName) {
-        if (articleService.addCategory(categoryName)) {
-            return "{\"success\":1}";
-        }
-        return "";
-    }
-
     @RequestMapping(value = "/category/table.json", method = RequestMethod.POST)
     @ResponseBody
     public Map<String, ?> listCategory(DataTableParam tableParam) {
@@ -117,6 +106,29 @@ public class ArticleController extends BaseController {
         List<?> data = ObjectUtil.toDataList(result.target(), "category_id", "category_name", "category_count");
         return WebUtil.dataTable(data, tableParam.getDraw(), result.attr("totalRecords"),
                 result.attr("totalDisplayRecords"));
+    }
+
+    @RequestMapping(value = "/category/new", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> newCategory(String categoryName) {
+        return WebUtil.success("添加成功", articleService.saveCategory(categoryName));
+    }
+
+    @RequestMapping(value = "/category/delete/{categoryId}", method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String, Object> deleteCategory(@PathVariable String categoryId) {
+        articleService.deleteCategory(categoryId);
+        return WebUtil.success(Constaint.DELETE_SUCCESS);
+    }
+
+    @RequestMapping(value = "/category/deleteSelect", method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String, Object> deleteCategorys(String ids) {
+        String[] item = ids.split(",");
+        for (String anItem : item) {
+            articleService.deleteCategory(anItem);
+        }
+        return WebUtil.success(Constaint.DELETE_SUCCESS);
     }
 
     @RequestMapping(value = "/tags", method = RequestMethod.GET)

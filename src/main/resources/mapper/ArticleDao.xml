@@ -39,10 +39,10 @@
 
     <update id="updateArticle">
         UPDATE topblog.t_article
-        SET article_title     = #{articleEnitiy.articleTitle},
+        SET article_title       = #{articleEnitiy.articleTitle},
             article_category_id = #{articleEnitiy.articleCategoryID},
-            article_time      = #{articleEnitiy.articleTime},
-            article_content   = #{articleEnitiy.articleContent}
+            article_time        = #{articleEnitiy.articleTime},
+            article_content     = #{articleEnitiy.articleContent}
         WHERE article_id = #{articleEnitiy.articleId}
     </update>
 

@@ -25,11 +25,11 @@
         <section class="content">
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <button class="btn btn-primary" onclick="location='${ctx}/admin/article/new'">写文章</button>
-                    <button class="btn btn-primary" id="deleteSelect">批量删除</button>
+                    <button type="button" class="btn btn-primary" onclick="location='${ctx}/admin/article/new'">写文章</button>
+                    <button type="button" class="btn btn-primary" id="deleteSelect">批量删除</button>
                 </div>
                 <div class="box-body">
-                    <table id="table" class="table table-bordered table-hover table-striped">
+                    <table id="table" class="table table-bordered table-hover table-striped" style="width: 100%">
                         <thead>
                         <tr>
                             <th><label for="checkAll"></label><input type="checkbox" id="checkAll"/></th>
@@ -104,7 +104,7 @@
                     render: function (data) {
                         var content = '<div class="btn-group">';
                         content += '    <button type="button" class="btn btn-primary" onclick="location=\'${ctx}/admin/article/edit/' + data + '\'">编辑</button>';
-                        content += '    <button type="button" class="btn btn-primary" value="' + data + '" onclick="deleteArticle(this)" >删除</button>';
+                        content += '    <button type="button" class="btn btn-primary" value="' + data + '" onclick="deleteAction(this)" >删除</button>';
                         content += '</div>';
                         return content;
                     }
@@ -144,7 +144,7 @@
         });
     });
 
-    function deleteArticle(obj) {
+    function deleteAction(obj) {
         var url = "${ctx}/admin/article/delete/" + obj.value;
         if (confirm("警告：确定删除该文章么？")) {
             $.get(url, function (result) {
