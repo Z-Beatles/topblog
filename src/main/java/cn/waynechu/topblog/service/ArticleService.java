@@ -68,6 +68,7 @@ public class ArticleService {
         return articleTime;
     }
 
+    @Transactional
     public void deleteArticle(String articleId) {
         articleDao.deleteArticle(articleId);
     }
@@ -85,6 +86,7 @@ public class ArticleService {
         return articleDao.getArticleById(articleId);
     }
 
+    @Transactional
     public void deleteCategory(String categoryId) {
         categoryDao.deleteCategory(categoryId);
     }

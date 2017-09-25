@@ -3,7 +3,7 @@
 <mapper namespace="cn.waynechu.topblog.dao.PermissionDao">
     <select id="getPermissionsByRole" resultType="java.lang.String">
         SELECT c.name
-        FROM t_role a, t_role_permission b, t_permission c
+        FROM topblog.t_role a, topblog.t_role_permission b, topblog.t_permission c
         WHERE b.role_id = a.id
               AND b.permission_id = c.id
               AND a.name = #{name}

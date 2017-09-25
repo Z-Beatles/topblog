@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 import cn.waynechu.topblog.entity.ArticleEntity;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface ArticleDao {
 
     List<ArticleEntity> listArticle(@Param("offset") int offset, @Param("limit") int limit);

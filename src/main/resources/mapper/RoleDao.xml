@@ -3,7 +3,7 @@
 <mapper namespace="cn.waynechu.topblog.dao.RoleDao">
     <select id="getRolesByLoginUserId" resultType="java.lang.String">
         SELECT c.name
-        FROM t_user_role a, t_user_login b, t_role c
+        FROM topblog.t_user_role a, topblog.t_user_login b, topblog.t_role c
         WHERE a.login_user_id = b.id
               AND a.role_id = c.id
               AND b.id = #{id}

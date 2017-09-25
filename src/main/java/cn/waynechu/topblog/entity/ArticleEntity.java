@@ -6,7 +6,6 @@ public class ArticleEntity {
     /** 文章ID **/
     private long articleId;
     /** 文章标题 **/
-
     private String articleTitle;
     /** 文章作者 **/
     private long articleAuthorID;

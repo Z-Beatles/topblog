@@ -3,13 +3,13 @@
 <mapper namespace="cn.waynechu.topblog.dao.LoginUserDao">
     <select id="getLoginUserByUsername" resultType="LoginUserEntity">
         SELECT *
-        FROM t_user_login
+        FROM topblog.t_user_login
         WHERE username = #{username}
     </select>
 
     <select id="getByLoginId" resultType="LoginUserEntity">
         SELECT *
-        FROM t_user_login
+        FROM topblog.t_user_login
         WHERE id = #{id}
     </select>
 </mapper>

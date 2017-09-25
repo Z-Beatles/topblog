@@ -3,25 +3,25 @@
 <mapper namespace="cn.waynechu.topblog.dao.UserDao">
     <select id="getUserByMobile" parameterType="String" resultType="UserEntity">
         SELECT *
-        FROM t_user
+        FROM topblog.t_user
         WHERE mobile = #{mobile}
     </select>
 
     <select id="getUserByEmail" parameterType="String" resultType="UserEntity">
         SELECT *
-        FROM t_user
+        FROM topblog.t_user
         WHERE email = #{email}
     </select>
 
     <select id="getUserByUsername" parameterType="String" resultType="UserEntity">
         SELECT *
-        FROM t_user
+        FROM topblog.t_user
         WHERE username = #{username}
     </select>
 
     <select id="getUserByLoginId" parameterType="long" resultType="UserEntity">
         SELECT a.*
-        FROM t_user a, t_user_login b
+        FROM topblog.t_user a, topblog.t_user_login b
         WHERE b.username = a.username AND b.id = #{id}
     </select>
 </mapper>
