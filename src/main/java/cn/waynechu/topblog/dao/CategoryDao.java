@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface CategoryDao {
 
     List<Map<String, String>> listCategory(@Param("offset") int offset, @Param("limit") int limit);

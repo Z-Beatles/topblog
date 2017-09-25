@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE xml>
 <ehcache updateCheck="false">
 	<diskStore path="java.io.tmpdir\topblog_2017.07.25" />
 
@@ -12,5 +11,4 @@
 	   diskPersistent="false" 
 	   diskExpiryThreadIntervalSeconds="120"
 	   memoryStoreEvictionPolicy="LRU" />
-
 </ehcache>

@@ -51,6 +51,7 @@ public class ArticleController extends BaseController {
 
     @RequestMapping(value = "/new", method = RequestMethod.POST)
     @ResponseBody
+    @SuppressWarnings("unchecked")
     public Map<String, Object> newArticle(ArticleEntity articleEntity) {
         Map<String, Object> principal = (Map<String, Object>) SecurityUtils.getSubject().getPrincipal();
         Long id = (Long) principal.get("loginId");

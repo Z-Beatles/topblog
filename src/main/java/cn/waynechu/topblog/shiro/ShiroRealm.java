@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 @Component
+@SuppressWarnings("unchecked")
 public class ShiroRealm extends AuthorizingRealm {
 
     @Autowired
