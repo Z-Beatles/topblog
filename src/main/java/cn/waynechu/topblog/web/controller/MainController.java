@@ -56,6 +56,8 @@ public class MainController extends BaseController {
             } catch (AuthenticationException e) {
                 logger.warn("--->系统错误", e);
                 model.addAttribute("errormsg", "系统错误，请稍候再试！");
+            }catch (Exception e){
+                e.printStackTrace();
             }
         }
         return "admin/login";

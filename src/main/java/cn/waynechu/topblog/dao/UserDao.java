@@ -3,6 +3,9 @@ package cn.waynechu.topblog.dao;
 import cn.waynechu.topblog.entity.UserEntity;
 import org.apache.ibatis.annotations.Param;
 
+import javax.jws.soap.SOAPBinding;
+import java.util.List;
+
 public interface UserDao {
 
     UserEntity getUserByMobile(@Param("mobile") String account);
@@ -13,4 +16,5 @@ public interface UserDao {
 
     UserEntity getUserByLoginId(@Param("id") Long id);
 
+    List<UserEntity> getAllUser();
 }

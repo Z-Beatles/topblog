@@ -30,17 +30,6 @@
                 </div>
                 <div class="box-body">
                     <table id="table" class="table table-bordered table-hover table-striped">
-                        <thead>
-                        <tr>
-                            <th><label for="checkAll"></label><input type="checkbox" id="checkAll"/></th>
-                            <th>序号</th>
-                            <th>标题</th>
-                            <th>作者</th>
-                            <th>分类目录</th>
-                            <th>发布日期</th>
-                            <th>操作</th>
-                        </tr>
-                        </thead>
                     </table>
                 </div>
             </div>
@@ -75,24 +64,30 @@
             },
             columns: [
                 {
+                    title:'<input type="checkbox" id="checkAll"/>',
                     data: "articleId",
                     render: function (data) {
                         return '<input type="checkbox" value="' + data + '"/>';
                     }
                 },
                 {
+                    title:"序号",
                     data: "articleId"
                 },
                 {
+                    title:"标题",
                     data: "articleTitle"
                 },
                 {
+                    title:"作者",
                     data: "articleAuthor"
                 },
                 {
+                    title:"分类目录",
                     data: "articleCategory"
                 },
                 {
+                    title:"发布日期",
                     data: "articleTime",
                     render: function (data) {
                         var newDate = new Date(data);

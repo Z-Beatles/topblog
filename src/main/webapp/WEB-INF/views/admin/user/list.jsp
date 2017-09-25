@@ -30,20 +30,6 @@
                 </div>
                 <div class="box-body">
                     <table id="table" class="table table-bordered table-hover table-striped">
-                        <thead>
-                        <tr>
-                            <th><input type="checkbox" table-column-selector/></th>
-                            <th>用户ID</th>
-                            <th>角色</th>
-                            <th>用户名</th>
-                            <th>昵称</th>
-                            <th>头像</th>
-                            <th>邮箱</th>
-                            <th>电话</th>
-                            <th>文章数量</th>
-                            <th>操作</th>
-                        </tr>
-                        </thead>
                     </table>
                 </div>
             </div>
@@ -57,7 +43,7 @@
         var dt = $('#table').DataTable({
             serverSide: true,
             processing: true,
-            ajax: {url: '${ctx}/user/list/table.json', type: 'POST'},
+            ajax: {url: '${ctx}/admin/user/list.json', type: 'POST'},
             dom: "<'row'<'col-sm-6'l><'col-sm-6'f>><'row'<'col-sm-12'tr>><'row'<'col-sm-6'i><'col-sm-6'p>>",
             pagingType: 'full_numbers',
             ordering: false,
@@ -78,25 +64,27 @@
             },
             columns: [
                 {
-                    data: "loginId",
+                    title:'<input type="checkbox" id="checkAll"/>',
+                    data: "id",
                     render: function (data) {
-                        var content = '<input type="checkbox" value="' + data + '"/>';
+                        var content = '<input type="checkbox"value="' + data + '"/>';
                         return content;
                     }
                 },
                 {
-                    data: "loginId"
+                    title:"ID",
+                    data: "id"
                 },
                 {
-                    data: "loginType"
-                },
-                {
+                    title:"用户名",
                     data: "username"
                 },
                 {
+                    title:"昵称",
                     data: "nickname"
                 },
                 {
+                    title:"头像",
                     data: "avatar",
                     render: function (data) {
                         var imageUrl = (data != null) ? data : ("${ctxPath}/static/image/user.jpg");
@@ -105,18 +93,15 @@
                     }
                 },
                 {
+                    title:"电话",
                     data: "mobile"
                 },
                 {
+                    title:"email",
                     data: "email"
                 },
                 {
-                    data: "disabled"
-                },
-                {
-                    data: "locked"
-                },
-                {
+                    title:"操作",
                     render: function () {
                         var content = '<div class="btn-group">';
                         content += '    <button type="button" class="btn btn-primary">禁用</button>';
@@ -137,6 +122,13 @@
                     n.checked = enable;
                 });
             });
+        });
+        $("#checkAll").click(function () {
+            if (this.checked) {
+                $('table tr td input[type=checkbox]').prop('checked', true);
+            } else {
+                $('table tr td input[type=checkbox]').prop('checked', false);
+            }
         });
     });
 </script>
