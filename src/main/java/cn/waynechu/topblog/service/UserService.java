@@ -9,6 +9,8 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @Scope(scopeName = ConfigurableBeanFactory.SCOPE_SINGLETON, proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class UserService {
@@ -32,4 +34,7 @@ public class UserService {
         return userDao.getUserByLoginId(id);
     }
 
+    public List<UserEntity> getAllUser(){
+     return userDao.getAllUser();
+    }
 }

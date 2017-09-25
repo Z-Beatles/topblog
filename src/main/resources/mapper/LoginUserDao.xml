@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.waynechu.topblog.dao.LoginUserDao">
+
+    <sql id="userLoginMsg">
+        SELECT  id,username,avatar,password_hash,password_salt,
+                password_algo,password_iteration,
+                disabled,locked FROM t_user_login
+    </sql>
     <select id="getLoginUserByUsername" resultType="LoginUserEntity">
-        SELECT *
-        FROM topblog.t_user_login
+        <include refid="userLoginMsg"/>
         WHERE username = #{username}
     </select>
-
     <select id="getByLoginId" resultType="LoginUserEntity">
-        SELECT *
-        FROM topblog.t_user_login
+        <include refid="userLoginMsg"/>
         WHERE id = #{id}
     </select>
 </mapper>

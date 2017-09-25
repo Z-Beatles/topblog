@@ -25,22 +25,11 @@
         <section class="content">
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <button type="button" class="btn btn-primary" onclick="location='${ctx}/admin/article/new'">写文章</button>
-                    <button type="button" class="btn btn-primary" id="deleteSelect">批量删除</button>
+                    <button class="btn btn-primary" onclick="location='${ctx}/admin/article/new'">写文章</button>
+                    <button class="btn btn-primary" id="deleteSelect">批量删除</button>
                 </div>
                 <div class="box-body">
-                    <table id="table" class="table table-bordered table-hover table-striped" style="width: 100%">
-                        <thead>
-                        <tr>
-                            <th><label for="checkAll"></label><input type="checkbox" id="checkAll"/></th>
-                            <th>序号</th>
-                            <th>标题</th>
-                            <th>作者</th>
-                            <th>分类目录</th>
-                            <th>发布日期</th>
-                            <th>操作</th>
-                        </tr>
-                        </thead>
+                    <table id="table" class="table table-bordered table-hover table-striped">
                     </table>
                 </div>
             </div>
@@ -75,24 +64,30 @@
             },
             columns: [
                 {
+                    title:'<input type="checkbox" id="checkAll"/>',
                     data: "articleId",
                     render: function (data) {
                         return '<input type="checkbox" value="' + data + '"/>';
                     }
                 },
                 {
+                    title:"序号",
                     data: "articleId"
                 },
                 {
+                    title:"标题",
                     data: "articleTitle"
                 },
                 {
+                    title:"作者",
                     data: "articleAuthor"
                 },
                 {
+                    title:"分类目录",
                     data: "articleCategory"
                 },
                 {
+                    title:"发布日期",
                     data: "articleTime",
                     render: function (data) {
                         var newDate = new Date(data);
@@ -104,7 +99,7 @@
                     render: function (data) {
                         var content = '<div class="btn-group">';
                         content += '    <button type="button" class="btn btn-primary" onclick="location=\'${ctx}/admin/article/edit/' + data + '\'">编辑</button>';
-                        content += '    <button type="button" class="btn btn-primary" value="' + data + '" onclick="deleteAction(this)" >删除</button>';
+                        content += '    <button type="button" class="btn btn-primary" value="' + data + '" onclick="deleteArticle(this)" >删除</button>';
                         content += '</div>';
                         return content;
                     }
@@ -144,7 +139,7 @@
         });
     });
 
-    function deleteAction(obj) {
+    function deleteArticle(obj) {
         var url = "${ctx}/admin/article/delete/" + obj.value;
         if (confirm("警告：确定删除该文章么？")) {
             $.get(url, function (result) {

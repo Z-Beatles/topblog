@@ -1,27 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.waynechu.topblog.dao.UserDao">
+    <!--供查询全字段信息使用-->
+    <sql id="userMsg">
+        SELECT id,username,nickname,mobile,email FROM  t_user
+    </sql>
+
     <select id="getUserByMobile" parameterType="String" resultType="UserEntity">
-        SELECT *
-        FROM topblog.t_user
+        <include refid="userMsg"/>
         WHERE mobile = #{mobile}
     </select>
 
     <select id="getUserByEmail" parameterType="String" resultType="UserEntity">
-        SELECT *
-        FROM topblog.t_user
+        <include refid="userMsg"/>
         WHERE email = #{email}
     </select>
 
     <select id="getUserByUsername" parameterType="String" resultType="UserEntity">
-        SELECT *
-        FROM topblog.t_user
+        <include refid="userMsg"/>
         WHERE username = #{username}
     </select>
 
     <select id="getUserByLoginId" parameterType="long" resultType="UserEntity">
         SELECT a.*
-        FROM topblog.t_user a, topblog.t_user_login b
+        FROM t_user a, t_user_login b
         WHERE b.username = a.username AND b.id = #{id}
     </select>
+
+    <select id="getAllUser" resultType="cn.waynechu.topblog.entity.UserEntity">
+        <include refid="userMsg"/>
+    </select>
+
 </mapper>

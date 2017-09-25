@@ -4,6 +4,9 @@ import cn.waynechu.topblog.entity.UserEntity;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import javax.jws.soap.SOAPBinding;
+import java.util.List;
+
 @Repository
 public interface UserDao {
 
@@ -15,4 +18,5 @@ public interface UserDao {
 
     UserEntity getUserByLoginId(@Param("id") Long id);
 
+    List<UserEntity> getAllUser();
 }
