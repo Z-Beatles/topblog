@@ -1,9 +1,9 @@
 package cn.waynechu.topblog.web.controller.admin;
 
+import cn.waynechu.topblog.entity.UserEntity;
 import cn.waynechu.topblog.service.UserService;
 import cn.waynechu.topblog.util.WebUtil;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import cn.waynechu.topblog.base.BaseController;
@@ -26,10 +26,10 @@ public class UserController extends BaseController{
     }
     @ResponseBody
     @RequestMapping("list.json")
-    public HashMap<String,Object> getAllUser(){
+    public HashMap<String,Object> getUser(UserEntity user){
         HashMap<String, Object> map = new HashMap<>();
-        map.put("data",userService.getAllUser());
-        WebUtil.dataTable(userService.getAllUser(),10, "totalRecords", "totalDisplayRecords");
+        map.put("data",userService.getUser(user));
+        WebUtil.dataTable(userService.getUser(user),10, "totalRecords", "totalDisplayRecords");
         return map;
     }
 

@@ -19,22 +19,25 @@ public class UserService {
     private UserDao userDao;
 
     public UserEntity getUserByAccount(String account) {
-        UserEntity userEntity = null;
+        UserEntity user = new UserEntity();
         if (RegexUtil.matchMobile(account)) {
-            userEntity = userDao.getUserByMobile(account);
+            user.setMobile(account);
+            user = userDao.selectOne(user);
         } else if (RegexUtil.matchEmail(account)) {
-            userEntity = userDao.getUserByEmail(account);
+            user.setEmail(account);
+            user = userDao.selectOne(user);
         } else {
-            userEntity = userDao.getUserByUsername(account);
+            user.setUsername(account);
+            user = userDao.selectOne(user);
         }
-        return userEntity;
+        return user;
     }
-
-    public UserEntity getUserByLoginId(Long id) {
-        return userDao.getUserByLoginId(id);
+    public UserEntity getUserByLoginId(Long id){
+        UserEntity user = new UserEntity();
+        user.setId(id);
+        return userDao.selectOne(user);
     }
-
-    public List<UserEntity> getAllUser(){
-     return userDao.getAllUser();
+    public List<UserEntity> getUser(UserEntity user){
+     return userDao.select(user);
     }
 }

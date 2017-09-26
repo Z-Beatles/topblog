@@ -113,7 +113,6 @@
                 }
             ]
         });
-
         $('input[table-column-selector]').each(function (index, target) {
             $(target).change(function () {
                 var enable = $(this)[0].checked;

@@ -6,29 +6,72 @@
         SELECT id,username,nickname,mobile,email FROM  t_user
     </sql>
 
-    <select id="getUserByMobile" parameterType="String" resultType="UserEntity">
-        <include refid="userMsg"/>
-        WHERE mobile = #{mobile}
+    <!--统计-->
+    <select id="count" resultType="cn.waynechu.topblog.entity.UserEntity">
+        SELECT COUNT 1=1 FROM t_user
+        <where>
+           <if test="id!=null">
+              AND  id=#{id}
+           </if>
+            <if test="username!=null and username!='' ">
+              AND  username  LIKE CONCAT ('%',#{username},'%')
+            </if>
+            <if test="nickname!=null and nickname!=''">
+              AND nikename LIKE  CONCAT ('%',#{nickename},'%')
+            </if>
+            <if test="mobile!=null and mobile!='' ">
+                AND mobile LIKE CONCAT ('%',#{mobile},'%')
+            </if>
+            <if test="email!=null and email!='' ">
+                AND email LIKE CONCAT ('%',#{email},'%')
+            </if>
+        </where>
     </select>
 
-    <select id="getUserByEmail" parameterType="String" resultType="UserEntity">
+    <!--模糊查询-->
+    <select id="select" resultType="cn.waynechu.topblog.entity.UserEntity">
         <include refid="userMsg"/>
-        WHERE email = #{email}
+        <where>
+            <if test="id!=null">
+                AND  id=#{id}
+            </if>
+            <if test="username!=null and username!='' ">
+                AND  username  LIKE CONCAT ('%',#{username},'%')
+            </if>
+            <if test="nickname!=null and nickname!=''">
+                AND nikename LIKE  CONCAT ('%',#{nickename},'%')
+            </if>
+            <if test="mobile!=null and mobile!='' ">
+                AND mobile LIKE CONCAT ('%',#{mobile},'%')
+            </if>
+            <if test="email!=null and email!='' ">
+                AND email LIKE CONCAT ('%',#{email},'%')
+            </if>
+        </where>
+<!--        <if test="pageIndex >= 0 and pageSize >= 1">
+            LIMIT #{pageIndex}, #{pageSize}
+        </if>-->
     </select>
-
-    <select id="getUserByUsername" parameterType="String" resultType="UserEntity">
+    <!--精确查询-->
+    <select id="selectOne" resultType="cn.waynechu.topblog.entity.UserEntity">
         <include refid="userMsg"/>
-        WHERE username = #{username}
-    </select>
-
-    <select id="getUserByLoginId" parameterType="long" resultType="UserEntity">
-        SELECT a.*
-        FROM t_user a, t_user_login b
-        WHERE b.username = a.username AND b.id = #{id}
-    </select>
-
-    <select id="getAllUser" resultType="cn.waynechu.topblog.entity.UserEntity">
-        <include refid="userMsg"/>
+        <where>
+            <if test="id!=null">
+                AND  id=#{id}
+            </if>
+            <if test="username!=null">
+                AND  username =#{username}
+            </if>
+            <if test="nickname!=null">
+                AND nikename =#{nickname}
+            </if>
+            <if test="mobile!=null">
+                AND mobile =#{mobile}
+            </if>
+            <if test="email!=null">
+                AND email=#{email}
+            </if>
+        </where>
     </select>
 
 </mapper>
