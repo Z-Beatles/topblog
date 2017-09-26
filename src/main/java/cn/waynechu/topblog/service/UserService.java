@@ -2,6 +2,7 @@ package cn.waynechu.topblog.service;
 
 import cn.waynechu.topblog.dao.UserDao;
 import cn.waynechu.topblog.entity.UserEntity;
+import cn.waynechu.topblog.model.DataTableParam;
 import cn.waynechu.topblog.util.RegexUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -9,7 +10,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.HashMap;
 
 @Service
 @Scope(scopeName = ConfigurableBeanFactory.SCOPE_SINGLETON, proxyMode = ScopedProxyMode.TARGET_CLASS)
@@ -37,7 +38,25 @@ public class UserService {
         user.setId(id);
         return userDao.selectOne(user);
     }
-    public List<UserEntity> getUser(UserEntity user){
-     return userDao.select(user);
+    //查询通用
+    public HashMap<String,Object> getUser(UserEntity user , DataTableParam dataTableParam){
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        user.setPageSize(dataTableParam.getLength());//页面大小
+        user.setPageIndex((dataTableParam.getDraw()-1)*dataTableParam.getLength());//起始条-1
+        Integer userCount = userDao.count(user);//查询到的记录数
+        map.put("data",userDao.select(user));//查询的到的数据
+        map.put("recordsTotal",userCount) ;
+        map.put("recordsFiltered",userCount);
+        return map;
+    }
+    //增删改
+    public  Integer addUser(UserEntity user){
+        return userDao.insert(user);
+    }
+    public Integer removeUser(UserEntity user){
+        return userDao.delete(user);
+    };
+    public Integer editUser(UserEntity user){
+        return userDao.update(user);
     }
 }

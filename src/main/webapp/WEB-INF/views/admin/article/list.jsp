@@ -43,7 +43,7 @@
         var dt = $('#table').DataTable({
             serverSide: true,
             processing: true,
-            ajax: {url: '${ctx}/admin/article/list.json', type: 'GET'},
+            ajax: {url: '${ctx}/admin/article/list.json', type: 'post'},
             dom: "<'row'<'col-sm-6'l><'col-sm-6'f>><'row'<'col-sm-12'tr>><'row'<'col-sm-6'i><'col-sm-6'p>>",
             pagingType: 'full_numbers',
             ordering: false,

@@ -7,8 +7,8 @@
     </sql>
 
     <!--统计-->
-    <select id="count" resultType="cn.waynechu.topblog.entity.UserEntity">
-        SELECT COUNT 1=1 FROM t_user
+    <select id="count" resultType="Integer" parameterType="cn.waynechu.topblog.entity.UserEntity">
+        SELECT Count(1) FROM t_user
         <where>
            <if test="id!=null">
               AND  id=#{id}
@@ -48,9 +48,9 @@
                 AND email LIKE CONCAT ('%',#{email},'%')
             </if>
         </where>
-<!--        <if test="pageIndex >= 0 and pageSize >= 1">
+       <if test="pageIndex >= 0 and pageSize >= 1">
             LIMIT #{pageIndex}, #{pageSize}
-        </if>-->
+        </if>
     </select>
     <!--精确查询-->
     <select id="selectOne" resultType="cn.waynechu.topblog.entity.UserEntity">
@@ -73,5 +73,32 @@
             </if>
         </where>
     </select>
+
+    <insert id="insert" parameterType="cn.waynechu.topblog.entity.UserEntity">
+        INSERT t_user VALUES (#{id},#{username},#{nickename},#{mobile},#{email})
+    </insert>
+
+    <delete id="delete" parameterType="cn.waynechu.topblog.entity.UserEntity">
+          DELETE FROM t_user WHERE id = #{id}
+    </delete>
+
+    <update id="update" parameterType="cn.waynechu.topblog.entity.UserEntity">
+        UPDATE t_user
+        <set>
+            <if test="username!=null and username !=''">
+                username=#{username}
+            </if>
+            <if test="nickname!=null and nickname!=''">
+                nickname=#{nickname}
+            </if>
+            <if test="mobile!=null and mobile!=''">
+                mobile=#{mobile}
+            </if>
+            <if test="email!=null and email!=''">
+                email=#{email}
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
 
 </mapper>

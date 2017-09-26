@@ -1,4 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set value="${pageContext.request.contextPath }" var="ctx"></c:set>
 <!DOCTYPE html>
 <html lang="zh">
 <head>
@@ -38,12 +41,13 @@
     <%@ include file="/WEB-INF/views/admin/footer.jsp" %>
 </div>
 
-<script>
+<script type="text/javascript">
+
     $(document).ready(function () {
         var dt = $('#table').DataTable({
             serverSide: true,
             processing: true,
-            ajax: {url: '${ctx}/admin/user/list.json', type: 'POST'},
+            ajax: {url: '${ctx}/admin/user/list.json', type: 'post'},
             dom: "<'row'<'col-sm-6'l><'col-sm-6'f>><'row'<'col-sm-12'tr>><'row'<'col-sm-6'i><'col-sm-6'p>>",
             pagingType: 'full_numbers',
             ordering: false,

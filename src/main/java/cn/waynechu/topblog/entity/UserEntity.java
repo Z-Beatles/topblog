@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 @EqualsAndHashCode(callSuper=false)
 @Data
-public class UserEntity implements Serializable{
+public class UserEntity extends BaseEntity implements Serializable{
     /** id **/
     private Long id;
     /** 用户名 **/
@@ -18,6 +18,5 @@ public class UserEntity implements Serializable{
     private String mobile;
     /** 邮箱 **/
     private String email;
-
 
 }

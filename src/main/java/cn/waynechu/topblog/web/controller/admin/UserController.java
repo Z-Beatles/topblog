@@ -1,8 +1,8 @@
 package cn.waynechu.topblog.web.controller.admin;
 
 import cn.waynechu.topblog.entity.UserEntity;
+import cn.waynechu.topblog.model.DataTableParam;
 import cn.waynechu.topblog.service.UserService;
-import cn.waynechu.topblog.util.WebUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,21 +26,26 @@ public class UserController extends BaseController{
     }
     @ResponseBody
     @RequestMapping("list.json")
-    public HashMap<String,Object> getUser(UserEntity user){
-        HashMap<String, Object> map = new HashMap<>();
-        map.put("data",userService.getUser(user));
-        WebUtil.dataTable(userService.getUser(user),10, "totalRecords", "totalDisplayRecords");
-        return map;
+    public HashMap<String,Object> getUser(UserEntity user, DataTableParam dataTableParam){
+        return userService.getUser(user,dataTableParam);
     }
 
-    @RequestMapping(value="/add", method = RequestMethod.GET)
-    public String add(PageParam pageParam) {
-        return "admin/user/add";
+    @ResponseBody
+    @RequestMapping("/addUser")
+    public Integer addUser(UserEntity user) {
+        return userService.addUser(user);
     }
-    
-    @RequestMapping(value="/info", method = RequestMethod.GET)
-    public String info(PageParam pageParam) {
-        return "admin/user/info";
+
+
+    @ResponseBody
+    @RequestMapping("/removeUser")
+    public Integer removeUser(UserEntity user){
+        return userService.removeUser(user);
     }
-    
+
+    @ResponseBody
+    @RequestMapping("/editUser")
+    public Integer editUser(UserEntity user){
+        return userService.editUser(user);
+    }
 }

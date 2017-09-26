@@ -34,7 +34,7 @@ public class ArticleController extends BaseController {
         return "admin/article/list";
     }
 
-    @RequestMapping(value = "/list.json", method = RequestMethod.GET)
+    @RequestMapping("/list.json")
     @ResponseBody
     public Map<String, ?> listArticle(DataTableParam tableParam) {
         Result<List<ArticleEntity>> result = articleService.listArticle(tableParam);

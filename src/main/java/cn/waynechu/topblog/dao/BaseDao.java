@@ -10,11 +10,11 @@ public interface BaseDao<T>{
     /**
      * 基础的增删改查
      */
-    void insert(T t);
+    Integer insert(T t);
 
-    void delete(T t);
+    Integer delete(T t);
 
-    void update(T t);
+    Integer update(T t);
 
     List<T> select(T t);
 
