@@ -25,38 +25,34 @@
         <section class="content">
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <!-- 模态触发按钮 -->
-                    <button type="button" class="btn btn-primary" id="toggleModal">添加新目录</button>
-                </div>
-                <!-- 模态框-->
-                <div class="modal fade" id="myModal">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" onclick="window.location.reload();">
-                                    <span>&times;</span></button>
-                                <h4 class="modal-title">添加目录</h4>
-                            </div>
-                            <div class="modal-body">
-                                <form class="form-horizontal" id="category">
-                                    <div class="form-group">
-                                        <label class="col-sm-3 control-label">目录名称：</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" name="categoryName" placeholder="请输入目录名称">
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <span id="tip" style="display: none;color:red;font-size:16px;">添加成功！</span>
-                                <button type="button" class="btn btn-default" onclick="window.location.reload();">关闭</button>
-                                <button type="button" class="btn btn-primary" id="newCategory">添加</button>
-                            </div>
-                        </div>
-                    </div>
+                    <button type="button" class="btn btn-primary" onclick="togglePanel()">添加新目录</button>
+                    <button type="button" class="btn btn-primary" id="deleteSelect">批量删除</button>
                 </div>
                 <div class="box-body">
-                    <table id="table" class="table table-bordered table-hover table-striped">
+                    <!-- 下拉面板 start -->
+                    <div class="post" id="myPanel" style="display: none">
+                        <div class="box no-border">
+                            <form class="form-horizontal" id="myForm">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">添加目录</h3>
+                                </div>
+                                <div class="box-body">
+                                    <div class="form-group">
+                                        <label for="categoryName" class="col-sm-2 control-label">目录名称：</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="categoryName" name="categoryName" placeholder="请填写目录名称">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="box-footer">
+                                    <button type="button" class="btn btn-default" onclick="togglePanel()">取消</button>
+                                    <button type="button" class="btn btn-primary pull-right" id="addCategory">确认</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- 下拉面板 end -->
+                    <table id="table" class="table table-bordered table-hover table-striped" style="width: 100%">
                         <thead>
                         <tr>
                             <th><label for="checkAll"></label><input type="checkbox" id="checkAll"/></th>
@@ -79,7 +75,6 @@
         var dt = $('#table').DataTable({
             serverSide: true,
             processing: true,
-            searching: false,
             ordering: false,
             ajax: {
                 url: '${ctx}/admin/article/category/table.json',
@@ -122,8 +117,8 @@
                     data: "category_id",
                     render: function (data) {
                         var content = '<div class="btn-group">';
-                        content += '    <button type="button" class="btn btn-primary" onclick="location=\'${ctx}/admin/article/edit/' + data + '\'">编辑</button>';
-                        content += '    <button type="button" class="btn btn-primary" value="' + data + '" onclick="deleteArticle(this)" >删除</button>';
+                        content += '    <button type="button" class="btn btn-primary" disabled="disabled" onclick="location=\'${ctx}/admin/article/category/edit/' + data + '\'">编辑</button>';
+                        content += '    <button type="button" class="btn btn-primary" value="' + data + '" onclick="deleteAction(this)" >删除</button>';
                         content += '</div>';
                         return content;
                     }
@@ -139,6 +134,19 @@
             }
         });
 
+        $("#addCategory").click('click', function () {
+            var url = "${ctx}/admin/article/category/new";
+            var data = $("#myForm").serialize();
+            $.post(url, data, function (result) {
+                if (result["success"] === false) {
+                    alert("添加失败");
+                } else {
+                    alert("添加成功");
+                    location.reload();
+                }
+            });
+        });
+
         $("#deleteSelect").click(function () {
             var checks = $("table tr td input[type=checkbox]:checked");
             if (checks.length === 0) {
@@ -150,7 +158,7 @@
                 checks.each(function () {
                     checkData.push($(this).val());
                 });
-                var url = "/setup/dictionary/market/list/deleteSelect";
+                var url = "${ctx}/admin/article/category/deleteSelect";
                 $.get(url, {ids: checkData.toString()}, function (result) {
                     if (result["success"] === false) {
                         alert("批量删除失败");
@@ -161,29 +169,25 @@
                 });
             }
         });
+    });
 
-        $("#toggleModal").click(function () {
-            $("#myModal").modal({
-                show: true,//显示弹出层
-                backdrop: 'static',//禁止位置关闭
-                keyboard: false//关闭键盘事件
-            });
-        });
-        $("#newCategory").one('click', function () {
-            var url = "/article/category/new";
-            var data = $("#category").serialize();
-            $.post(url, data, function (result) {
-                if (result) {
-                    $("#tip").fadeIn("slow");
-                    $("#tip").fadeOut("slow");
-                    $("#tip").fadeIn("slow");
-                    $("#tip").fadeOut("slow");
-                    $("#tip").fadeIn("slow");
-                    $("#tip").fadeOut("slow");
+    function deleteAction(obj) {
+        var url = "${ctx}/admin/article/category/delete/" + obj.value;
+        if (confirm("警告：确定删除该目录么？")) {
+            $.get(url, function (result) {
+                if (result["success"] === false) {
+                    alert(result);
+                } else {
+                    alert("删除成功！");
+                    location.reload();
                 }
             });
-        });
-    });
+        }
+    }
+
+    function togglePanel() {
+        $('#myPanel').slideToggle("slow");
+    }
 </script>
 </body>
 </html>

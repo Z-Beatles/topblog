@@ -30,63 +30,66 @@
                 </div>
                 <div class="box-body">
                     <form id="article">
-                        <div class="col-md-10 form-group">
-                            <h3><label class="control-label" for="articleTitle">标题</label></h3>
-                            <input class="form-control input-lg" type="text" id="articleTitle" name="articleTitle" value="${articleTitle}"
-                                   placeholder="在此输入文章标题">
-                        </div>
-                        <div class="col-md-10 form-group">
-                            <h3><label class="control-label" for="articleContent">内容</label></h3>
-                            <div class="editormd" id="editormd">
-                                <textarea class="form-control" id="articleContent" name="articleContent"
-                                          style="display: none;">${articleContent}</textarea>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="box box-primary">
-                                <div class="box-header">
-                                    <h3 class="box-title">发布</h3>
+                        <div class="row">
+                            <div class="col-md-10">
+                                <div class="form-group">
+                                    <h3><label class="control-label" for="articleTitle">标题</label></h3>
+                                    <input class="form-control input-lg" type="text" id="articleTitle" name="articleTitle" value="${articleTitle}"
+                                           placeholder="在此输入文章标题">
                                 </div>
-                                <div class="box-body">
-                                    <button id="preview" type="button" class="btn btn-block btn-info">预览</button>
-                                    <button id="push" type="button" class="btn btn-block btn-success">发布</button>
-                                </div>
-                                <div class="box-footer">
-                                    <p id="status">状态：未发布</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="box box-success">
-                                <div class="box-header">
-                                    <h3 class="box-title">分类目录</h3>
-                                </div>
-                                <div class="box-body">
-                                    <div class="alert alert-danger alert-" id="alert" style="display: none">
-                                        <h4><i class="icon fa fa-ban"></i>提示：</h4>请选择文章分类目录！
+                                <div class="form-group">
+                                    <h3><label class="control-label" for="articleContent">内容</label></h3>
+                                    <div class="editormd" id="editormd">
+                                        <textarea class="form-control" id="articleContent" name="articleContent"
+                                                  style="display: none;">${articleContent}</textarea>
                                     </div>
-                                    <c:forEach items="${articleCategory}" var="category">
-                                        <div class="radio">
-                                            <label>
-                                                <c:choose>
-                                                    <c:when test="${category.category_id==articleCategoryID}">
-                                                        <input type="radio" name="articleCategoryID" value="${category.category_id}" checked="checked"/>
-                                                        <c:out value="${category.category_name}"/>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <input type="radio" name="articleCategoryID" value="${category.category_id}"/>
-                                                        <c:out value="${category.category_name}"/>
-                                                    </c:otherwise>
-                                                </c:choose>
-                                            </label>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="box box-primary">
+                                    <div class="box-header">
+                                        <h3 class="box-title">发布</h3>
+                                    </div>
+                                    <div class="box-body">
+                                        <button id="preview" type="button" class="btn btn-block btn-info">预览</button>
+                                        <button id="push" type="button" class="btn btn-block btn-success">发布</button>
+                                    </div>
+                                    <div class="box-footer">
+                                        <p id="status">状态：未发布</p>
+                                    </div>
+                                </div>
+
+                                <div class="box box-success">
+                                    <div class="box-header">
+                                        <h3 class="box-title">分类目录</h3>
+                                    </div>
+                                    <div class="box-body">
+                                        <div class="alert alert-danger alert-" id="alert" style="display: none">
+                                            <h4><i class="icon fa fa-ban"></i>提示：</h4>请选择文章分类目录！
                                         </div>
-                                    </c:forEach>
+                                        <c:forEach items="${articleCategory}" var="category">
+                                            <div class="radio">
+                                                <label>
+                                                    <c:choose>
+                                                        <c:when test="${category.category_id == articleCategoryID}">
+                                                            <input type="radio" name="articleCategoryID" value="${category.category_id}"
+                                                                   checked="checked"/>
+                                                            <c:out value="${category.category_name}"/>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <input type="radio" name="articleCategoryID" value="${category.category_id}"/>
+                                                            <c:out value="${category.category_name}"/>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </label>
+                                            </div>
+                                        </c:forEach>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </form>
                 </div>
-            </div>
         </section>
     </div>
     <%@ include file="/WEB-INF/views/admin/footer.jsp" %>
@@ -97,14 +100,14 @@
         var editor = editormd("editormd", {
             path: "/static/plugin/editor.md/lib/",
             placeholder: "提示：点击预览按钮可以预览样式。",
-            height: 800,
+            height: 600,
             watch: false,
             toolbar: true,
             autoHeight: false,
             emoji: true,
             imageUpload: true,
             imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
-            imageUploadURL: "${ctx}/upload/image"
+            imageUploadURL: "${ctx}/admin/upload/image"
         });
 
         function validatorArticle() {

@@ -67,17 +67,27 @@ public class ArticleService {
         }
         return articleTime;
     }
+
     @Transactional
     public void deleteArticle(String articleId) {
         articleDao.deleteArticle(articleId);
     }
 
     @Transactional
-    public boolean addCategory(String categoryName) {
-        return categoryDao.addCategory(categoryName) ? true : false;
+    public boolean saveCategory(String categoryName) {
+        int flag = categoryDao.saveCategory(categoryName);
+        if (flag == 0) {
+            throw new AppException(2, "添加目录失败");
+        }
+        return true;
     }
 
     public ArticleEntity getArticleById(Long articleId) {
         return articleDao.getArticleById(articleId);
+    }
+
+    @Transactional
+    public void deleteCategory(String categoryId) {
+        categoryDao.deleteCategory(categoryId);
     }
 }

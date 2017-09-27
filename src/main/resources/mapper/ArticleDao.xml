@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.waynechu.topblog.dao.ArticleDao">
-
-
     <select id="listArticle" parameterType="int" resultType="cn.waynechu.topblog.entity.ArticleEntity">
         SELECT
             a.article_id,
@@ -39,10 +37,10 @@
 
     <update id="updateArticle">
         UPDATE topblog.t_article
-        SET article_title     = #{articleEnitiy.articleTitle},
+        SET article_title       = #{articleEnitiy.articleTitle},
             article_category_id = #{articleEnitiy.articleCategoryID},
-            article_time      = #{articleEnitiy.articleTime},
-            article_content   = #{articleEnitiy.articleContent}
+            article_time        = #{articleEnitiy.articleTime},
+            article_content     = #{articleEnitiy.articleContent}
         WHERE article_id = #{articleEnitiy.articleId}
     </update>
 

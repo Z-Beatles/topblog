@@ -16,6 +16,7 @@
 <link rel="icon" type="image/x-icon" href="${ctx}/static/favicon.ico" />
 <!-- Common CSS -->
 <link rel="stylesheet" href="${ctx}/static/plugin/bootstrap-3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="${ctx}/static/plugin/icheck-1.0.1/skins/square/blue.css">
 <link rel="stylesheet" href="${ctx}/static/plugin/font-awesome-4.5.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="${ctx}/static/plugin/ionicons-2.0.1/css/ionicons.min.css">
 <link rel="stylesheet" href="${ctx}/static/plugin/datatables-1.10.15/css/jquery.dataTables.min.css">
@@ -26,6 +27,7 @@
 
 <!-- Common JS -->
 <script src="${ctx}/static/plugin/jquery-2.2.3/jquery.js"></script>
+<script src="${ctx}/static/plugin/icheck-1.0.1/icheck.min.js"></script>
 <script src="${ctx}/static/plugin/bootstrap-3.3.7/js/bootstrap.min.js"></script>
 <script src="${ctx}/static/plugin/adminlte-2.3.7/js/adminlte.min.js"></script>
 <script src="${ctx}/static/plugin/datatables-1.10.15/js/jquery.dataTables.js"></script>

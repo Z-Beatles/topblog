@@ -4,8 +4,6 @@
 <html lang="zh">
 <head>
     <%@ include file="/WEB-INF/views/admin/common_head.jsp" %>
-    <link rel="stylesheet" href="${ctx}/static/plugin/bootstrapvalidator-0.5.3/css/bootstrapValidator.min.css">
-    <link rel="stylesheet" href="${ctx}/static/plugin/icheck-1.0.1/skins/square/blue.css">
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
@@ -51,9 +49,6 @@
         <a href="/forget">忘记密码？</a>
     </div>
 </div>
-
-<script src="${ctx}/static/plugin/bootstrapvalidator-0.5.3/js/bootstrapValidator.js"></script>
-<script src="${ctx}/static/plugin/icheck-1.0.1/icheck.min.js"></script>
 <script>
     $(document).ready(function () {
         $('.icheck').iCheck({
