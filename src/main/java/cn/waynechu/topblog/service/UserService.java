@@ -53,10 +53,10 @@ public class UserService {
     public  Integer addUser(UserEntity user){
         return userDao.insert(user);
     }
-    public Integer removeUser(UserEntity user){
+    public Integer deleteUser(UserEntity user){
         return userDao.delete(user);
     };
-    public Integer editUser(UserEntity user){
+    public Integer updateUser(UserEntity user){
         return userDao.update(user);
     }
 }

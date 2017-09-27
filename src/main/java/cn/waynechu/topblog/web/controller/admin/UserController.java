@@ -40,12 +40,12 @@ public class UserController extends BaseController{
     @ResponseBody
     @RequestMapping("/removeUser")
     public Integer removeUser(UserEntity user){
-        return userService.removeUser(user);
+        return userService.deleteUser(user);
     }
 
     @ResponseBody
     @RequestMapping("/editUser")
     public Integer editUser(UserEntity user){
-        return userService.editUser(user);
+        return userService.updateUser(user);
     }
 }

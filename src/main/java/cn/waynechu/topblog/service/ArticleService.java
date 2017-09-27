@@ -49,7 +49,7 @@ public class ArticleService {
         return result;
     }
 
-    @Transactional
+
     public Date saveArticle(ArticleEntity articleEnitiy) {
         Date articleTime = new Date();
         articleEnitiy.setArticleTime(articleTime);
@@ -68,12 +68,13 @@ public class ArticleService {
         return articleTime;
     }
 
-    @Transactional
+
     public void deleteArticle(String articleId) {
         articleDao.deleteArticle(articleId);
+        throw new RuntimeException("测试异常！");
     }
 
-    @Transactional
+
     public boolean saveCategory(String categoryName) {
         int flag = categoryDao.saveCategory(categoryName);
         if (flag == 0) {
@@ -86,7 +87,7 @@ public class ArticleService {
         return articleDao.getArticleById(articleId);
     }
 
-    @Transactional
+
     public void deleteCategory(String categoryId) {
         categoryDao.deleteCategory(categoryId);
     }
