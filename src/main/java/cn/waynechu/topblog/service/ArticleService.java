@@ -67,7 +67,7 @@ public class ArticleService {
         }
         return articleTime;
     }
-
+    @Transactional
     public void deleteArticle(String articleId) {
         articleDao.deleteArticle(articleId);
     }
