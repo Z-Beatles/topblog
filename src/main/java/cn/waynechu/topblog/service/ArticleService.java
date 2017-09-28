@@ -71,7 +71,6 @@ public class ArticleService {
 
     public void deleteArticle(String articleId) {
         articleDao.deleteArticle(articleId);
-        throw new RuntimeException("测试异常！");
     }
 
 

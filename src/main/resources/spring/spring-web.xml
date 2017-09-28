@@ -13,7 +13,22 @@
     <!-- 扫描web相关的controller -->
     <context:component-scan base-package="cn.waynechu.topblog.web"/>
 
-    <mvc:annotation-driven/>
+    <!--处理器适配器 和 处理器映射器-->
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <!--            &lt;!&ndash;转json的方式换成fastjson,默认为jackson&ndash;&gt;-->
+            <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+                <!--                &lt;!&ndash;fastJson 在转换相同对象 对象内容一致   只转换一次&ndash;&gt;
+                                &lt;!&ndash;解决循环检测问题&ndash;&gt;-->
+                <property name="supportedMediaTypes" value="application/json;charset=UTF-8"/>
+                <property name="features">
+                    <list>
+                        <value>DisableCircularReferenceDetect</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
 
     <!-- 放行静态资源 -->
     <mvc:default-servlet-handler/>

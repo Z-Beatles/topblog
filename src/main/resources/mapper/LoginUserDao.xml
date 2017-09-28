@@ -15,4 +15,7 @@
         <include refid="userLoginMsg"/>
         WHERE id = #{id}
     </select>
+    <delete id="delete">
+        DELETE FROM t_user_login where id=#{id}
+    </delete>
 </mapper>
