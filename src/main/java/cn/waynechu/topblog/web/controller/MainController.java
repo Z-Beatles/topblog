@@ -60,7 +60,7 @@ public class MainController extends BaseController {
                 e.printStackTrace();
             }
         }
-        return "admin/login";
+        return "redirect:/admin";
     }
 
     @RequestMapping(value = "/unauthorized", method = RequestMethod.GET)
