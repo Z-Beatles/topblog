@@ -162,7 +162,7 @@
         <section class="content">
             <div class="box">
                 <div class="box-header with-border">
-                    <a class="btn btn-primary" href="${ctx}/admin/user/add">添加用户</a>
+                    <a class="btn btn-primary" href="${ctx}/views/admin/user/add">添加用户</a>
                 </div>
                 <div class="box-body">
                     <table id="table" class="table table-bordered table-hover table-striped">
