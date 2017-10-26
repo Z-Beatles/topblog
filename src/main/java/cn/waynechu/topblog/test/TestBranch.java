@@ -5,6 +5,8 @@ package cn.waynechu.topblog.test;
  */
 public class TestBranch {
     public static void main(String[] args) {
+
         System.out.println("test create new branch!");
+        System.out.println("add a new line code!");
     }
 }
