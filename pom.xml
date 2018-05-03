@@ -90,11 +90,6 @@
 			<!-- 声明该包只在编译和测试的时候用 -->
 			<scope>provided</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.freemarker</groupId>
-			<artifactId>freemarker</artifactId>
-			<version>${freemarker.version}</version>
-		</dependency>
 		<!-- spring核心依赖 -->
 		<dependency>
 			<groupId>org.springframework</groupId>
