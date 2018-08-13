@@ -220,6 +220,15 @@
 
 	<build>
 		<finalName>topblog</finalName>
+
+		<!--读取配置文件-->
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+
 		<!-- tomcat 插件 -->
 		<plugins>
 			<plugin>
@@ -259,4 +268,24 @@
 			</plugin>
 		</plugins>
 	</build>
+
+	<!--不同运行环境可选配置文件 ，想要 properties取到配置的值，要配置resource标签读取本地的配置文件-->
+	<!--编译打包是添加参数选择配置 例 mvn clean package -Pdev-->
+	<profiles>
+		<!--朱伟环境-->
+		<profile>
+			<id>zhuwei</id>
+			<properties>
+				<db.mysql.password>123456</db.mysql.password>
+			</properties>
+		</profile>
+		<!--夏存海环境-->
+		<profile>
+			<id>xiacunhai</id>
+			<properties>
+				<db.mysql.password>root</db.mysql.password>
+			</properties>
+		</profile>
+	</profiles>
+
 </project>

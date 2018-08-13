@@ -138,6 +138,17 @@
                 },'json');
             }
         }
+
+        function saveUserMessage() {
+            var data = $("#myForm").serialize();
+            console.log(data);
+            togglePanel();
+        }
+
+        function togglePanel() {
+            $('#myPanel').slideToggle("slow");
+        }
+
     </script>
 </head>
 <body class="hold-transition skin-purple sidebar-mini">
@@ -162,11 +173,54 @@
         <section class="content">
             <div class="box">
                 <div class="box-header with-border">
-                    <a class="btn btn-primary" href="${ctx}/admin/user/add">添加用户</a>
+                    <a class="btn btn-primary" onclick="togglePanel()">添加用户</a>
                 </div>
+
                 <div class="box-body">
-                    <table id="table" class="table table-bordered table-hover table-striped">
-                    </table>
+                    <!-- 下拉面板 start -->
+                    <div class="post" id="myPanel" style="display: none">
+                        <div class="box no-border">
+                            <form class="form-horizontal" id="myForm">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">用户信息</h3>
+                                </div>
+                                <div class="box-body">
+                                    <div class="form-group">
+                                        <label for="username" class="col-sm-1 control-label">用户名：</label>
+                                        <div class="col-sm-2">
+                                            <input type="text" class="form-control" id="username" name="categoryName" placeholder="请填写用户名称">
+                                        </div>
+
+
+                                        <label for="nickname" class="col-sm-1 control-label">昵称：</label>
+                                        <div class="col-sm-2">
+                                            <input type="text" class="form-control" id="nickname" name="categoryName" placeholder="请填写昵称">
+                                        </div>
+
+
+                                        <label for="mobile" class="col-sm-1 control-label">电话：</label>
+                                        <div class="col-sm-2">
+                                            <input type="text" class="form-control" id="mobile" name="categoryName" placeholder="请填写电话">
+                                        </div>
+
+
+                                        <label for="email" class="col-sm-1 control-label">邮箱：</label>
+                                        <div class="col-sm-2">
+                                            <input type="text" class="form-control" id="email" name="categoryName" placeholder="请填写邮箱">
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="box-footer">
+                                    <button type="button" class="btn btn-primary pull-right" onclick="togglePanel()">取消</button>
+                                    <button type="button" class="btn btn-primary pull-right" id="addCategory" onclick="saveUserMessage()">确认</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- 下拉面板 end -->
+                    <%--数据表格--%>
+                    <table id="table" class="table table-bordered table-hover table-striped"></table>
                 </div>
             </div>
         </section>

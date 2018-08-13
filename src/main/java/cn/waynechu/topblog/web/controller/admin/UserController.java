@@ -29,12 +29,18 @@ public class UserController extends BaseController{
 
     @RequestMapping(value="/list", method = RequestMethod.GET)
     public String list(PageParam pageParam) {
-        return "admin/user/list";
+        return "admin/user/allUserList";
     }
     @ResponseBody
     @RequestMapping("list.json")
     public HashMap<String,Object> getUser(UserEntity user, DataTableParam dataTableParam){
         return userService.getUser(user,dataTableParam);
+    }
+
+
+    @RequestMapping(value="/editUserPage", method = RequestMethod.GET)
+    public String addUserPage(String flag,String id) {
+        return "admin/user/editUser";
     }
 
     @ResponseBody
@@ -54,8 +60,15 @@ public class UserController extends BaseController{
     }
 
     @ResponseBody
-    @RequestMapping("/editUser")
+    @RequestMapping("/updateUser")
     public Integer editUser(UserEntity user){
         return userService.updateUser(user);
     }
+
+
+    @RequestMapping(value="/editMyselfPage", method = RequestMethod.GET)
+    public String editMyselfPage(String id) {
+        return "admin/user/myselfInfo";
+    }
+
 }
