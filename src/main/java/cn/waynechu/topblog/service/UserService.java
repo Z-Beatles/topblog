@@ -26,7 +26,7 @@ public class UserService {
     @Autowired
     private LoginUserDao loginUserDao;
 
-    public UserEntity getUserByAccount(String account) {
+    public UserEntity getUserByAccount(String account) throws Exception{
         UserEntity user = new UserEntity();
         if (RegexUtil.matchMobile(account)) {
             user.setMobile(account);
@@ -46,44 +46,52 @@ public class UserService {
         return userDao.selectOne(user);
     }
     //查询通用
-    public HashMap<String,Object> getUser(UserEntity user , DataTableParam dataTableParam){
+    public HashMap<String,Object> getUser(UserEntity user , DataTableParam dataTableParam)throws Exception{
         HashMap<String, Object> map = new HashMap<String, Object>();
-        user.setPageSize(dataTableParam.getLength());//页面大小
-        user.setPageIndex((dataTableParam.getDraw()-1)*dataTableParam.getLength());//起始条-1
-        Integer userCount = userDao.count(user);//查询到的记录数
-        List<UserEntity> users = userDao.select(user);//查询的到的数据
+        //页面大小
+        user.setPageSize(dataTableParam.getLength());
+        //起始条-1
+        user.setPageIndex(dataTableParam.getStart());
+        //查询到的记录数
+        Integer userCount = userDao.count(user);
+        //查询的到的数据
+        List<UserEntity> users = userDao.select(user);
         //封装展示对象信息
         List<UserVo> userVos = new ArrayList<>();
         for (UserEntity u : users) {
             LoginUserEntity loginUser = loginUserDao.getLoginUserByUsername(u.getUsername());
-            UserVo userVo = new UserVo();
-            userVo.setId(loginUser.getId());
-            userVo.setAvatar(loginUser.getAvatar());
-            userVo.setUsername(loginUser.getUsername());
-            userVo.setNickname(u.getNickname());
-            userVo.setMobile(u.getMobile());
-            userVo.setEmail(u.getEmail());
-            userVo.setDisabled(loginUser.getDisabled());
-            userVo.setLocked(loginUser.getLocked());
+            UserVo userVo=null;
+            if(null == loginUser){
+                 userVo = new UserVo(u.getId(),u.getUsername(),u.getNickname(),u.getMobile(),
+                        u.getEmail());
+            }else {
+                 userVo = new UserVo(u.getId(),loginUser.getAvatar(),u.getUsername(),u.getNickname(),u.getMobile(),
+                        u.getEmail(),loginUser.getDisabled(),loginUser.getLocked());
+            }
             userVos.add(userVo);
         }
-
         map.put("data",userVos);
         map.put("recordsTotal",userCount) ;
         map.put("recordsFiltered",userCount);
         return map;
     }
     //增删改
-    public  Integer addUser(UserEntity user){
+    public  Integer addUser(UserEntity user)throws Exception{
+
+        System.out.println(user);
+        if(null == user.getNickname()){
+            user.setNickname(user.getUsername());
+        }
+
         return userDao.insert(user);
     }
-    public Integer deleteUser(UserEntity user){
+    public Integer deleteUser(UserEntity user)throws Exception{
         LoginUserEntity loginUser= new LoginUserEntity();
         loginUser.setId(user.getId());
         loginUserDao.delete(loginUser);
         return userDao.delete(user);
     };
-    public Integer updateUser(UserEntity user){
+    public Integer updateUser(UserEntity user)throws Exception{
         return userDao.update(user);
     }
 }

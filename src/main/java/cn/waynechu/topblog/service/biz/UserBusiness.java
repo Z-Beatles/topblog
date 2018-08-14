@@ -21,9 +21,14 @@ public class UserBusiness {
     private LoginUserService loginUserService;
 
     public LoginUserEntity getLoginUserByAccount(String account) {
-        UserEntity user = userService.getUserByAccount(account);
-        if (user == null) {
-            return null;
+        UserEntity user = null;
+        try {
+            user = userService.getUserByAccount(account);
+            if (user == null) {
+                return null;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return loginUserService.getLoginUserByUsername(user.getUsername());
     }

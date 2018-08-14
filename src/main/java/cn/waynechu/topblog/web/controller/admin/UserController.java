@@ -29,51 +29,69 @@ public class UserController extends BaseController{
 
     @RequestMapping(value="/list", method = RequestMethod.GET)
     public String list(PageParam pageParam) {
-        return "admin/user/list";
+        return "admin/user/allUserList";
     }
-
-    @RequestMapping(value="/add", method = RequestMethod.GET)
-    public String add(PageParam pageParam) {
-        return "admin/user/add";
-    }
-
-    @RequestMapping(value="/info", method = RequestMethod.GET)
-    public String info(PageParam pageParam) {
-        return "admin/user/info";
-    }
-
     @ResponseBody
     @RequestMapping("list.json")
     public HashMap<String,Object> getUser(UserEntity user, DataTableParam dataTableParam){
-        return userService.getUser(user,dataTableParam);
+
+        HashMap<String, Object> users = null;
+        try {
+            users = userService.getUser(user, dataTableParam);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return users;
+    }
+
+
+    @RequestMapping(value="/editUserPage", method = RequestMethod.GET)
+    public String addUserPage(String flag,String id) {
+        return "admin/user/editUser";
     }
 
     @ResponseBody
     @RequestMapping("/addUser")
     public Integer addUser(UserEntity user) {
-        return userService.addUser(user);
+        Integer result = null;
+        try {
+            result = userService.addUser(user);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
 
     @ResponseBody
     @RequestMapping("/deleteUser")
     public Map<String, Object> deleteUser(String id){
-        UserEntity user = new UserEntity();
-        user.setId(Long.parseLong(id));
-        userService.deleteUser(user);
+        try {
+            UserEntity user = new UserEntity();
+            user.setId(Long.parseLong(id));
+            userService.deleteUser(user);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return WebUtil.success(Constaint.DELETE_SUCCESS);
     }
 
     @ResponseBody
     @RequestMapping("/updateUser")
-    public Integer updateUser(UserEntity user){
-        return userService.updateUser(user);
+    public Integer editUser(UserEntity user){
+        Integer result = null ;
+        try {
+            result = userService.updateUser(user);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
-    @ResponseBody
-    @RequestMapping("/currentUser")
-    public Integer currentUser(UserEntity user){
-        return userService.updateUser(user);
+
+    @RequestMapping(value="/editMyselfPage", method = RequestMethod.GET)
+    public String editMyselfPage(String id) {
+        return "admin/user/myselfInfo";
     }
 
 }

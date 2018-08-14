@@ -94,8 +94,8 @@
                 </a>
                 <ul class="treeview-menu">
                     <li class="${param.pageMenu=='user_list'?'active':''}"><a href="${pageContext.request.contextPath}/admin/user/list"><i class="fa fa-users"></i>所有用户</a></li>
-                    <li class="${param.pageMenu=='user_add'?'active':''}"><a href="${ctx}/admin/user/add"><i class="fa fa-user-plus"></i>添加用户</a></li>
-                    <li class="${param.pageMenu=='user_info'?'active':''}"><a href="${ctx}/admin/user/info"><i class="fa fa-black-tie"></i>我的资料</a>
+                    <li class="${param.pageMenu=='user_add'?'active':''}"><a href="${ctx}/admin/user/editUserPage"><i class="fa fa-user-plus"></i>添加用户</a></li>
+                    <li class="${param.pageMenu=='user_info'?'active':''}"><a href="${ctx}/admin/user/editMyselfPage"><i class="fa fa-black-tie"></i>我的资料</a>
                     </li>
                 </ul>
             </li>
