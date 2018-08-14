@@ -21,4 +21,26 @@ public class UserVo implements Serializable{
     private String email;// 邮箱
     private Boolean disabled;//禁用
     private Boolean locked;//锁定
+
+    public UserVo() {
+    }
+
+    public UserVo(long id, String username, String nickname, String mobile, String email) {
+        this.id = id;
+        this.username = username;
+        this.nickname = nickname;
+        this.mobile = mobile;
+        this.email = email;
+    }
+
+    public UserVo(long id, String avatar, String username, String nickname, String mobile, String email, Boolean disabled, Boolean locked) {
+        this.id = id;
+        this.avatar = avatar;
+        this.username = username;
+        this.nickname = nickname;
+        this.mobile = mobile;
+        this.email = email;
+        this.disabled = disabled;
+        this.locked = locked;
+    }
 }

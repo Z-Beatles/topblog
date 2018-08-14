@@ -125,6 +125,7 @@
                 }
             });
         });
+        //删除信息
         function deleteUser(obj) {
             var url = "${ctx}/admin/user/deleteUser";
             if (confirm("警告：确定删除该用户么？")) {
@@ -138,11 +139,59 @@
                 },'json');
             }
         }
+        //验证输入内容
+        function checkValue(type,param){
 
+            var mobile = /(^0{0,1}1[3|4|5|6|7|8|9][0-9]{9}$)/;
+            var email = /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/;
+            switch (type)
+            {
+                case 1:
+                   if($.trim(param)==null || $.trim(param)==""){
+                       return false;
+                   }else {
+                       return true;
+                   }
+                    break
+               case 2:
+                   return mobile.test($.trim(param));
+                    break;
+               case 3:
+                   return email.test($.trim(param));
+                   break;
+               case 4:
+                   if($.trim(param)==null || $.trim(param)==""){
+                       return false;
+                   }else {
+                       return true;
+                   }
+                   break;
+
+            }
+        }
+
+        //保存信息
         function saveUserMessage() {
-            var data = $("#myForm").serialize();
-            console.log(data);
+            if(!checkValue(1,$("#username").val())){
+                alert("用户名不能为空！");
+                return;
+            };
+
+            if(!checkValue(2,$("#mobile").val())){
+                alert("请输入正确的手机号！");
+                return;
+            };
+
+            if(!checkValue(3,$("#email").val())){
+                alert("请输入正确的邮箱！");
+                return;
+            };
+            $.post("${ctx}/admin/user/addUser",$("#myForm").serialize(),function (result) {
+                 console.log(result);
+                }
+            );
             togglePanel();
+            location.reload();
         }
 
         function togglePanel() {
@@ -188,25 +237,25 @@
                                     <div class="form-group">
                                         <label for="username" class="col-sm-1 control-label">用户名：</label>
                                         <div class="col-sm-2">
-                                            <input type="text" class="form-control" id="username" name="categoryName" placeholder="请填写用户名称">
+                                            <input type="text" class="form-control" id="username" name="username" placeholder="请填写用户名称(必填)">
                                         </div>
 
 
                                         <label for="nickname" class="col-sm-1 control-label">昵称：</label>
                                         <div class="col-sm-2">
-                                            <input type="text" class="form-control" id="nickname" name="categoryName" placeholder="请填写昵称">
+                                            <input type="text" class="form-control" id="nickname" name="nickname" placeholder="请填写昵称(非必填)">
                                         </div>
 
 
                                         <label for="mobile" class="col-sm-1 control-label">电话：</label>
                                         <div class="col-sm-2">
-                                            <input type="text" class="form-control" id="mobile" name="categoryName" placeholder="请填写电话">
+                                            <input type="text" class="form-control" id="mobile" name="mobile" placeholder="请填写电话(必填)">
                                         </div>
 
 
                                         <label for="email" class="col-sm-1 control-label">邮箱：</label>
                                         <div class="col-sm-2">
-                                            <input type="text" class="form-control" id="email" name="categoryName" placeholder="请填写邮箱">
+                                            <input type="text" class="form-control" id="email" name="email" placeholder="请填写邮箱(必填)">
                                         </div>
                                     </div>
 

@@ -75,7 +75,7 @@
     </select>
 
     <insert id="insert" parameterType="cn.waynechu.topblog.entity.UserEntity">
-        INSERT t_user VALUES (#{id},#{username},#{nickename},#{mobile},#{email})
+        INSERT INTO t_user(username,nickname,mobile,email) VALUES (#{username},#{nickname},#{mobile},#{email})
     </insert>
 
     <delete id="delete" parameterType="cn.waynechu.topblog.entity.UserEntity">

@@ -34,7 +34,14 @@ public class UserController extends BaseController{
     @ResponseBody
     @RequestMapping("list.json")
     public HashMap<String,Object> getUser(UserEntity user, DataTableParam dataTableParam){
-        return userService.getUser(user,dataTableParam);
+
+        HashMap<String, Object> users = null;
+        try {
+            users = userService.getUser(user, dataTableParam);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return users;
     }
 
 
@@ -46,23 +53,39 @@ public class UserController extends BaseController{
     @ResponseBody
     @RequestMapping("/addUser")
     public Integer addUser(UserEntity user) {
-        return userService.addUser(user);
+        Integer result = null;
+        try {
+            result = userService.addUser(user);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
 
     @ResponseBody
     @RequestMapping("/deleteUser")
     public Map<String, Object> deleteUser(String id){
-        UserEntity user = new UserEntity();
-        user.setId(Long.parseLong(id));
-        userService.deleteUser(user);
+        try {
+            UserEntity user = new UserEntity();
+            user.setId(Long.parseLong(id));
+            userService.deleteUser(user);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return WebUtil.success(Constaint.DELETE_SUCCESS);
     }
 
     @ResponseBody
     @RequestMapping("/updateUser")
     public Integer editUser(UserEntity user){
-        return userService.updateUser(user);
+        Integer result = null ;
+        try {
+            result = userService.updateUser(user);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
 
