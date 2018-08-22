@@ -1,0 +1,79 @@
+plugins {
+    id 'java'
+    id 'war'
+    id 'maven'
+    id "org.akhikhl.gretty" version "2.0.0"
+}
+
+
+group = 'cn.waynechu.topblog'
+version = '1.0-SNAPSHOT'
+
+description = """topblog Maven Webapp"""
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+tasks.withType(JavaCompile) {
+	options.encoding = 'UTF-8'
+}
+
+//镜像仓库
+repositories {
+     maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+}
+//配置外部属性
+ext {
+    spring_version = "4.3.8.RELEASE"
+    shiro_vesion = "1.4.0"
+}
+dependencies {
+
+    compile(
+            "ch.qos.logback:logback-classic:1.2.3",
+            "c3p0:c3p0:0.9.1.1",
+            "org.mybatis:mybatis:3.3.0",
+            "org.mybatis:mybatis-spring:1.2.3",
+            "jstl:jstl:1.2",
+            "com.fasterxml.jackson.core:jackson-databind:2.8.8",
+            "org.springframework:spring-beans:${spring_version}",
+            "org.springframework:spring-core:${spring_version}",
+            "org.springframework:spring-context:${spring_version}",
+            "org.springframework:spring-jdbc:${spring_version}",
+            "org.springframework:spring-tx:${spring_version}",
+            "org.springframework:spring-web:${spring_version}",
+            "org.springframework:spring-webmvc:${spring_version}",
+            "org.springframework:spring-test:${spring_version}",
+            "org.apache.shiro:shiro-core:${shiro_vesion}",
+            "org.apache.shiro:shiro-aspectj:${shiro_vesion}",
+            "org.apache.shiro:shiro-spring:${shiro_vesion}",
+            "org.apache.shiro:shiro-quartz:${shiro_vesion}",
+            "org.apache.shiro:shiro-web:${shiro_vesion}",
+            "org.apache.shiro:shiro-ehcache:${shiro_vesion}",
+            "org.apache.commons:commons-lang3:3.5",
+            "org.apache.commons:commons-collections4:4.1",
+            "commons-fileupload:commons-fileupload:1.3.3",
+            "com.google.guava:guava:21.0",
+            "redis.clients:jedis:2.9.0",
+            "com.dyuproject.protostuff:protostuff-core:1.1.1",
+            "com.dyuproject.protostuff:protostuff-runtime:1.1.1",
+            "org.projectlombok:lombok:1.14.4",
+            "com.alibaba:fastjson:1.2.33",
+    )
+    runtime group: 'mysql', name: 'mysql-connector-java', version:'5.1.35'
+    testCompile group: 'junit', name: 'junit', version:'4.12'
+    //
+    compile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.0.1'
+
+}
+//打包名称
+war {
+    archiveName = 'topblog.war'
+}
+
+//gretty 配置
+gretty {
+    httpPort = 8081
+    // 'jetty7', 'jetty8', 'jetty9', 'jetty93', 'jetty94', 'tomcat7', 'tomcat8'
+    servletContainer = 'jetty9'
+    contextPath = '/'
+}
