@@ -67,4 +67,19 @@ public class MainController extends BaseController {
     public String unauthorized() {
         return "/unauthorized";
     }
+
+
+    /**
+    　* @Description: 注册页面
+    　* @param
+    　* @return  注册页面jsp
+    　* @throws
+    　* @author xiacunhai
+    　* @date 2018/8/15 15:30
+    　*/
+    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    public String register() {
+        return "admin/register";
+    }
+
 }

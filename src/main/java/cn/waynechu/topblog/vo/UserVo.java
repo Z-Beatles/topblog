@@ -17,10 +17,14 @@ public class UserVo implements Serializable{
     private String avatar; //头像
     private String username; //用户名
     private String nickname;// 昵称
+    private String password;//密码
     private String mobile; // 联系电话
     private String email;// 邮箱
     private Boolean disabled;//禁用
     private Boolean locked;//锁定
+
+
+
 
     public UserVo() {
     }

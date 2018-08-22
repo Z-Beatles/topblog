@@ -38,15 +38,14 @@
                 </div>
             </div>
         </form>
-        <div class="social-auth-links text-center">
-            <p>-- OR --</p>
+<%--        <div class="social-auth-links text-center">
             <a href="#" class="btn btn-block btn-social btn-facebook btn-flat">
                 <i class="fa fa-envelope"></i> 使用 邮箱 登录
             </a> <a href="#" class="btn btn-block btn-social btn-google btn-flat">
             <i class="fa fa-phone"></i> 使用 手机号 登录
         </a>
-        </div>
-        <a href="/forget">忘记密码？</a>
+        </div>--%>
+        <a href="/forget">忘记密码？</a>&nbsp&nbsp<a href="${ctx}/register.html" class="text-center">注册会员帐号</a>
     </div>
 </div>
 <script>

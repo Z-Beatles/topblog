@@ -3,8 +3,11 @@ package cn.waynechu.topblog.web.controller.admin;
 import cn.waynechu.topblog.Constaint;
 import cn.waynechu.topblog.entity.UserEntity;
 import cn.waynechu.topblog.model.DataTableParam;
+import cn.waynechu.topblog.service.LoginUserService;
 import cn.waynechu.topblog.service.UserService;
 import cn.waynechu.topblog.util.WebUtil;
+import cn.waynechu.topblog.vo.MyResult;
+import cn.waynechu.topblog.vo.UserVo;
 import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.springframework.stereotype.Controller;
@@ -26,6 +29,8 @@ public class UserController extends BaseController{
 
     @Resource
     private UserService userService;
+    @Resource
+    private LoginUserService loginUserService;
 
     @RequestMapping(value="/list", method = RequestMethod.GET)
     public String list(PageParam pageParam) {
@@ -93,5 +98,24 @@ public class UserController extends BaseController{
     public String editMyselfPage(String id) {
         return "admin/user/myselfInfo";
     }
+
+
+    /**
+    　* @Description: 注册用户
+    　* @param
+    　* @return
+    　* @throws
+    　* @author xiacunhai
+    　* @date 2018/8/15 16:35
+    　*/
+    @RequestMapping(value="/registerUser", method = RequestMethod.POST)
+    public String registerUser(UserVo vo) {
+        System.out.println(vo);
+        MyResult myResult = loginUserService.registerUser(vo);
+
+        return "admin/login";
+    }
+
+
 
 }
