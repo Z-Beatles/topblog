@@ -8,7 +8,6 @@ plugins {
 
 group = 'cn.waynechu.topblog'
 version = '1.0-SNAPSHOT'
-
 description = """topblog Maven Webapp"""
 
 sourceCompatibility = 1.8
@@ -29,20 +28,28 @@ ext {
 dependencies {
 
     compile(
+            //实现slf4j接口并整合
             "ch.qos.logback:logback-classic:1.2.3",
             "c3p0:c3p0:0.9.1.1",
+            //mybatis以及依赖jar
             "org.mybatis:mybatis:3.3.0",
             "org.mybatis:mybatis-spring:1.2.3",
+            //Servlet web相关依赖
             "jstl:jstl:1.2",
             "com.fasterxml.jackson.core:jackson-databind:2.8.8",
+            // spring核心依赖
             "org.springframework:spring-beans:${spring_version}",
             "org.springframework:spring-core:${spring_version}",
             "org.springframework:spring-context:${spring_version}",
+            //spring dao依赖
             "org.springframework:spring-jdbc:${spring_version}",
             "org.springframework:spring-tx:${spring_version}",
+            //spring web依赖
             "org.springframework:spring-web:${spring_version}",
             "org.springframework:spring-webmvc:${spring_version}",
+            // spring test依赖
             "org.springframework:spring-test:${spring_version}",
+            //shiro 依赖
             "org.apache.shiro:shiro-core:${shiro_vesion}",
             "org.apache.shiro:shiro-aspectj:${shiro_vesion}",
             "org.apache.shiro:shiro-spring:${shiro_vesion}",
@@ -53,17 +60,23 @@ dependencies {
             "org.apache.commons:commons-collections4:4.1",
             "commons-fileupload:commons-fileupload:1.3.3",
             "com.google.guava:guava:21.0",
+            //redis客户端：Jedis
             "redis.clients:jedis:2.9.0",
+            //protostuff序列化依赖
             "com.dyuproject.protostuff:protostuff-core:1.1.1",
             "com.dyuproject.protostuff:protostuff-runtime:1.1.1",
+            //lombok插件
             "org.projectlombok:lombok:1.14.4",
+            //fastjson
             "com.alibaba:fastjson:1.2.33",
+
     )
     runtime group: 'mysql', name: 'mysql-connector-java', version:'5.1.35'
     testCompile group: 'junit', name: 'junit', version:'4.12'
-    //
+    //这个 provided 不好使
     compile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.0.1'
-
+    // https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api
+    //provided group: 'javax.servlet', name: 'javax.servlet-api', version: '3.1.0'
 }
 //打包名称
 war {
